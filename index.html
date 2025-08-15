@@ -1,207 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company Master Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-*{
-    margin: 0;
-    padding: 0;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-html, body{
-    width:100%;
-    height:100%;
-}
+    body {
+        font-family: Arial, sans-serif;
+    }
 
-.header{
-    width:100%;
-    height:100%;
-    position:relative;
-   
-}
-.nav{
-    width:100%;
-    height:90px;
-    /* background-color: red; */
-    display: flex;
-    align-items:center;
-    justify-content:space-between;
-    padding-left: 0px;
-    border-bottom: 2px solid #dadada;
-}
+    /* Header */
+    header {
+        background-color: #1E3A8A;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1001;
+    }
 
-.nav-part2{
-    display:flex;
-    align-items: center;
-    gap: 4vw;
-}
+    header .logo {
+        display: flex;
+        align-items: center;
+    }
 
- .nav h2{
-    font-size: 2vw;
-    margin-left: 50px;
- }   
- 
- .nav h4{
-    font-size: 1vw;
- } 
+    header .logo img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
 
- .nav-part2{
-    padding-right: 50px;
-    
- }
+    header .logo h1 {
+        font-size: 1.5rem;
+    }
 
- .nav i{
-    font-size: 1.6vw;
-    font-weight:800;
-    display: none;
- }
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
 
- .content{
-    /* background-color: burlywood; */
-    width: 100%;
-    height: calc(100% - 92px);
-    display: flex;
-    position: relative;
- }
+    nav ul li {
+        margin: 0 15px;
+    }
 
- .left{
-    height: 100%;
-    width: 50%;
-    /* background-color: crimson; */
-    
-    
- }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-.left h1{
-    font-size: 4vw;
-    line-height: 4.4vw;
-    margin: 50px 50px;  
-}
+    nav .menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
 
-.left p {
-    margin: 0px 50px;
-    margin-top: -40px;
-}
- button {
-    margin: 50px;
-    font-size: 1.2vw;
-    background-color: #FF735C;
-    color: #fff;
-    border-radius:5px;
-    font-weight:700;
-    border: none;
-    padding: 1vw 2vw;
-}
+    /* Slider */
+    .slider {
+        position: relative;
+        max-width: 100%;
+        height: 400px;
+        overflow: hidden;
+        margin-top: 10px;
+    }
 
- .right{
-    height: 100%;
-    width: 50%;
-    /* background-color: blue; */
- }
+    .slides {
+        display: flex;
+        width: 300%;
+        transition: transform 0.5s ease-in-out;
+    }
 
- .left h1 span{
-    color: #FF735C;
- }
+    .slides img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
 
- .right img{
-    height: 100%;
- }
+    .slider-nav {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+    }
 
+    .slider-nav i {
+        font-size: 2rem;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px;
+        background: rgba(0,0,0,0.3);
+        border-radius: 50%;
+    }
 
- 
+    /* Footer */
+    footer {
+        background-color: #1E3A8A;
+        color: #fff;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 20px;
+    }
 
- @media (max-width:600px){
-  .nav{
-    padding: 0 1vw;
-    width: 100%;
-    height: 60px;
-  }
-  .nav h2{
-    font-size: 6vw;
-  }
-  .nav h4{
-    font-size: 4vw;
-    display: none;
-  }
-  .nav i{
-    font-size: 6vw;
-    font-weight:800;
-    display: block;
- }
+    /* Responsive */
+    @media (max-width: 768px) {
+        nav ul {
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #1E3A8A;
+            padding-top: 70px; /* leave space for header */
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
 
- .nav button{
-    display: none;
- }
+        nav ul.active {
+            left: 0;
+        }
 
- .content{
-    height: calc(100% - 60px);
-    flex-direction: column;
- }
+        nav .menu-toggle {
+            display: block;
+        }
 
- .left{
-    width: 100%;
-    height: 45%;
- }
- .right{
-    width: 100%;
-    height: 55%;
- }
+        nav ul li {
+            margin: 20px 0;
+            text-align: center;
+        }
 
- .left h1{
-    font-size: 10vw;
-    line-height: 10vw;
- }
- .left p{
-    font-size: 10px;
-    font-weight: 800;
- }
-.content button{
-    padding: 3vw 6vw;
-    border-radius:3px;
-    font-size: 3.5vw;
-    font-weight: 600;
-    margin-top: 15px;
-}
+        .slider {
+            height: 250px;
+        }
 
-
-
-
-
- }
-
-
-
+        .slides img {
+            height: 250px;
+        }
+    }
 </style>
+</head>
 <body>
-<div class="header">
-    <div class="nav">
-        <h2>Logo</h2>
-        <div class="nav-part2">
-            <h4>Home</h4>
-            <h4>Contact</h4>
-            <h4>Blogs</h4>
-            <h4>Contact Us</h4>
-            <h4>About</h4>
-            <BUtton>Sign In</BUtton>
-            <i class="ri-menu-3-line"></i>
-        </div>
+
+<!-- Header -->
+<header>
+    <div class="logo">
+        <img src="https://via.placeholder.com/50" alt="Company Logo">
+        <h1>MyCompany</h1>
     </div>
-    <div class="content">
-         <div class="left">
-            <h1>Learn from the <span>coolest</span> coding platform of India</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex, expedita illum. Ipsa est recusandae velit excepturi corrupti quod voluptates animi?</p>
-             <button>Explore Now</button>     
-        </div>
-         <div class="right">
-            <img src="left-img.png" alt="">
-         </div>
+    <nav>
+        <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
+        <ul id="nav-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Slider -->
+<div class="slider">
+    <div class="slides" id="slides">
+        <img src="https://via.placeholder.com/1200x400/ff7f7f/333333?text=Slide+1" alt="Slide 1">
+        <img src="https://via.placeholder.com/1200x400/7fbfff/333333?text=Slide+2" alt="Slide 2">
+        <img src="https://via.placeholder.com/1200x400/7fff7f/333333?text=Slide+3" alt="Slide 3">
+    </div>
+    <div class="slider-nav">
+        <i class="fas fa-chevron-left" id="prev"></i>
+        <i class="fas fa-chevron-right" id="next"></i>
     </div>
 </div>
-  
+
+<!-- Main Content -->
+<main>
+    <section style="padding: 50px; text-align: center;">
+        <h2>Welcome to MyCompany</h2>
+        <p>This master page has a responsive left sidebar on mobile with logo visible at top.</p>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    &copy; 2025 MyCompany. All Rights Reserved.
+</footer>
+
+<!-- JS -->
+<script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navList = document.getElementById('nav-list');
+    menuToggle.addEventListener('click', () => {
+        navList.classList.toggle('active');
+    });
+
+    // Slider
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+    let index = 0;
+
+    const nextBtn = document.getElementById('next');
+    const prevBtn = document.getElementById('prev');
+
+    function showSlide(i) {
+        slides.style.transform = `translateX(-${i * 100}%)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        index = (index + 1) % totalSlides;
+        showSlide(index);
+    });
+
+    prevBtn.addEventListener('click', () => {
+        index = (index - 1 + totalSlides) % totalSlides;
+        showSlide(index);
+    });
+
+    setInterval(() => {
+        index = (index + 1) % totalSlides;
+        showSlide(index);
+    }, 5000);
+</script>
+
 </body>
 </html>
