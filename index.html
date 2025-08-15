@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -117,19 +117,15 @@
     @media (max-width: 768px) {
         nav ul {
             flex-direction: column;
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
+            position: relative; /* below header */
+            width: 100%;
             background-color: #1E3A8A;
-            padding-top: 70px; /* leave space for header */
-            transition: left 0.3s ease;
-            z-index: 1000;
+            padding-top: 15px; /* 15px margin from header */
+            display: none; /* hidden initially */
         }
 
         nav ul.active {
-            left: 0;
+            display: flex;
         }
 
         nav .menu-toggle {
@@ -137,7 +133,7 @@
         }
 
         nav ul li {
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: center;
         }
 
@@ -187,7 +183,7 @@
 <main>
     <section style="padding: 50px; text-align: center;">
         <h2>Welcome to MyCompany</h2>
-        <p>This master page has a responsive left sidebar on mobile with logo visible at top.</p>
+        <p>This master page has a responsive mobile navbar that comes below the header.</p>
     </section>
 </main>
 
