@@ -140,6 +140,13 @@ footer div {
   line-height: 1; /* remove extra space */
 }
 
+/* Desktop footer spacing: small normal space */
+@media (min-width: 769px) {
+  footer div + div {
+    margin-left: 5px; /* small normal space between texts */
+  }
+}
+
 /* Mobile: stack footer text and navbar */
 @media (max-width:768px){
   header nav ul {
@@ -200,8 +207,8 @@ footer div {
 </section>
 
 <footer>
-  <div>Committee started by </div>
-  <div> Raja Prajapati & Anuj Lodhi</div>
+  <div>Committee Started by</div>
+  <div>Raja Prajapati & Anuj Lodhi</div>
 </footer>
 
 <script>
@@ -229,6 +236,3 @@ setInterval(()=>{
 
 </body>
 </html>
-
-
-
