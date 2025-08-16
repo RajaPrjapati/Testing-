@@ -8,7 +8,7 @@
 <style>
 :root {
   --dark-pink: #d6336c;  /* header/footer */
-  --dark-pink-transparent: rgba(214, 51, 108, 0.8); /* navbar transparent */
+  --dark-pink-transparent: rgba(214, 51, 108, 0.9); /* navbar transparent */
   --light: #fff;          
   --dark: #222;
 }
@@ -64,9 +64,9 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
-  background: var(--dark-pink-transparent); /* transparent dark pink */
+  background: var(--dark-pink-transparent);
   padding: 5px 15px;
-  border-radius: 0 8px 8px 0; /* remove left corners */
+  border-radius: 0 8px 8px 0;
 }
 
 nav a {
@@ -87,7 +87,7 @@ nav a i {
 
 nav a:hover {
   background: rgba(255,255,255,0.2);
-  color: #ffd6e0; /* lighter pink */
+  color: #ffd6e0;
 }
 
 /* Mobile Menu */
@@ -104,14 +104,18 @@ nav a:hover {
     position: fixed;
     top: 60px; /* Below header */
     left: -250px;
-    height: calc(100% - 110px);
+    height: calc(100% - 60px);
     width: 250px;
     gap: 15px;
     transition: left 0.3s ease;
     z-index: 999;
     background: var(--dark-pink-transparent);
-    border-radius: 0 8px 8px 0;
+
+    /* ✅ Rounded both top-right and bottom-right */
+    border-radius: 0 12px 12px 0;
+
     padding-top: 20px;
+    padding-bottom: 20px;
   }
   nav ul.show {
     left: 0;
@@ -124,8 +128,8 @@ nav a:hover {
 /* Slider */
 .slider {
   position: fixed;
-  top: 60px; /* Below header */
-  bottom: 50px; /* Above footer */
+  top: 60px;
+  bottom: 50px;
   left: 0;
   width: 100%;
   overflow: hidden;
@@ -206,9 +210,9 @@ function updateSlide() {
   slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
 }
 
-updateSlide(); // start from first slide
+updateSlide();
 
-// Auto Slide (forward only)
+// Auto Slide
 setInterval(() => {
   currentSlide = (currentSlide + 1) % totalSlides;
   updateSlide();
@@ -222,6 +226,3 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 
 </body>
 </html>
-
-
-
