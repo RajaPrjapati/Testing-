@@ -111,13 +111,12 @@ nav a:hover {
     z-index: 999;
     background: var(--dark-pink-transparent);
 
-    /* ✅ Rounded both top-right and bottom-right */
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 
     padding-top: 20px;
     padding-bottom: 20px;
-    overflow: hidden; /* ensure rounded corners are visible */
+    overflow: hidden;
   }
   nav ul.show {
     left: 0;
@@ -168,19 +167,19 @@ footer {
 
 <header>
   <div class="branding">
-    <img src="logo-img3.png" alt="Logo"> <!-- ✅ Logo BEFORE text -->
+    <img src="logo-img3.png" alt="Logo">
     <h1>Committee</h1>
   </div>
   <nav>
     <ul>
       <li><a href="#home"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-      <li><a href="#about"><i class="fa-solid fa-circle-info"></i> Members Detail</a></li>
-      <li><a href="#services"><i class="fa-solid fa-briefcase"></i> Monthly Installment 25</a></li>
-      <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Monthly Installment 26</a></li>
-      <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Paid Money to Members</a></li>
-      <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Interest </a></li>
-      <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Terms & Condition </a></li>
-      <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Logout </a></li>
+      <li><a href="#about"><i class="fa-solid fa-users"></i> Members Detail</a></li>
+      <li><a href="#services"><i class="fa-solid fa-money-bill-wave"></i> Monthly Installment 25</a></li>
+      <li><a href="#contact"><i class="fa-solid fa-sack-dollar"></i> Monthly Installment 26</a></li>
+      <li><a href="#paid"><i class="fa-solid fa-hand-holding-dollar"></i> Paid Money to Members</a></li>
+      <li><a href="#interest"><i class="fa-solid fa-percent"></i> Interest</a></li>
+      <li><a href="#terms"><i class="fa-solid fa-file-contract"></i> Terms & Condition</a></li>
+      <li><a href="#logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
     </ul>
   </nav>
   <div class="menu-toggle"><i class="fas fa-bars"></i></div>
@@ -233,5 +232,3 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 
 </body>
 </html>
-
-
