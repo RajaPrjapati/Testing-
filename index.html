@@ -42,6 +42,11 @@
     font-size:28px; cursor:pointer; line-height:1;
   }
 
+  /* Hide mobile menu by default on desktop */
+  #mobile-panel {
+    display: none;
+  }
+
   /* Main grows to push footer down */
   main{ flex:1; padding:24px 20px; }
 
@@ -72,9 +77,8 @@
   @media (max-width: 768px){
     nav ul.desktop-menu{ display:none; }   /* hide desktop links */
     #burger{ display:block; }
-
-    /* Off-canvas panel that begins EXACTLY under the header */
-    #mobile-panel{
+    #mobile-panel {
+      display:flex; /* show on mobile */
       position:fixed; left:0; top:var(--header-h);
       width:260px; height:calc(100vh - var(--header-h));
       background:var(--brand);
@@ -82,7 +86,7 @@
       transition:transform .3s ease;
       z-index:1000;
       padding:10px 0;
-      display:flex; flex-direction:column;
+      flex-direction:column;
       box-shadow:0 10px 20px rgba(0,0,0,.25);
     }
     #mobile-panel.open{ transform:translateX(0); }
