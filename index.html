@@ -8,9 +8,12 @@
 <style>
 :root {
   --brand: #004aad;
+  --accent: #ff9800;
   --light: #fff;
+  --dark: #222;
 }
 
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -20,9 +23,7 @@
 body {
   font-family: Arial, sans-serif;
   background: #f4f6f8;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -37,7 +38,6 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px;
   z-index: 1000;
 }
 
@@ -47,18 +47,18 @@ header {
   gap: 10px;
 }
 
+.branding img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .branding h1 {
   font-size: 20px;
   font-weight: bold;
 }
 
-.branding img {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-}
-
-/* Navigation */
 nav ul {
   list-style: none;
   display: flex;
@@ -74,11 +74,26 @@ nav a {
   display: none;
   font-size: 22px;
   cursor: pointer;
+  color: var(--light);
 }
 
+/* Mobile Menu */
 @media (max-width: 768px) {
   nav ul {
-    display: none;
+    flex-direction: column;
+    background: var(--brand);
+    position: fixed;
+    top: 60px; /* Below header */
+    left: -250px;
+    height: calc(100% - 110px); /* Keep footer visible */
+    width: 250px;
+    padding: 20px;
+    gap: 15px;
+    transition: left 0.3s ease;
+    z-index: 999;
+  }
+  nav ul.show {
+    left: 0;
   }
   .menu-toggle {
     display: block;
@@ -87,17 +102,18 @@ nav a {
 
 /* Slider */
 .slider {
-  flex: 1;
-  margin-top: 60px; /* header height */
-  margin-bottom: 50px; /* footer height */
-  position: relative;
+  position: fixed;
+  top: 60px; /* Below header */
+  bottom: 50px; /* Above footer */
+  left: 0;
+  width: 100%;
   overflow: hidden;
 }
 
 .slides {
   display: flex;
-  transition: transform 0.5s ease;
   height: 100%;
+  transition: transform 0.5s ease;
 }
 
 .slide {
@@ -106,21 +122,6 @@ nav a {
   background-size: cover;
   background-position: center;
 }
-
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
 
 /* Footer */
 footer {
@@ -131,8 +132,8 @@ footer {
   background: var(--brand);
   color: var(--light);
   text-align: center;
-  padding: 10px;
-  height: 50px;
+  padding: 15px;
+  z-index: 1000;
 }
 </style>
 </head>
@@ -141,7 +142,7 @@ footer {
 <header>
   <div class="branding">
     <h1>Committee</h1>
-    <img src="committee-logo.png" alt="Logo">
+    <img src="logo.png" alt="Logo"> <!-- Replace with your uploaded image -->
   </div>
   <nav>
     <ul>
@@ -160,8 +161,6 @@ footer {
     <div class="slide" style="background-image:url('https://picsum.photos/1200/800?2')"></div>
     <div class="slide" style="background-image:url('https://picsum.photos/1200/800?3')"></div>
   </div>
-  <button class="slider-btn prev">&#10094;</button>
-  <button class="slider-btn next">&#10095;</button>
 </section>
 
 <footer>
@@ -172,28 +171,21 @@ footer {
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
-const slidesContainer = document.querySelector('.slides');
 
 function updateSlide() {
-  slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+  document.querySelector('.slides').style.transform = `translateX(-${currentSlide * 100}%)`;
 }
 
-// Manual Controls
-document.querySelector('.next').addEventListener('click', () => {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  updateSlide();
-});
-
-document.querySelector('.prev').addEventListener('click', () => {
-  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-  updateSlide();
-});
-
-// Auto Slide every 3 seconds
+// Auto Slide
 setInterval(() => {
   currentSlide = (currentSlide + 1) % totalSlides;
   updateSlide();
 }, 3000);
+
+// Mobile Menu Toggle
+document.querySelector('.menu-toggle').addEventListener('click', () => {
+  document.querySelector('nav ul').classList.toggle('show');
+});
 </script>
 
 </body>
