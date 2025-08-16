@@ -73,13 +73,24 @@ nav a {
   color: var(--light);
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+nav a i {
+  font-size: 16px;
 }
 
 nav a:hover {
-  color: #ffd6e0; /* lighter pink on hover */
+  background: rgba(255,255,255,0.2);
+  color: #ffd6e0; /* lighter pink */
 }
 
+/* Mobile Menu */
 .menu-toggle {
   display: none;
   font-size: 22px;
@@ -87,7 +98,6 @@ nav a:hover {
   color: var(--light);
 }
 
-/* Mobile Menu */
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
@@ -100,7 +110,8 @@ nav a:hover {
     transition: left 0.3s ease;
     z-index: 999;
     background: var(--dark-pink-transparent);
-    border-radius: 0 8px 8px 0; /* remove left corners on mobile too */
+    border-radius: 0 8px 8px 0;
+    padding-top: 20px;
   }
   nav ul.show {
     left: 0;
@@ -156,10 +167,10 @@ footer {
   </div>
   <nav>
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#about"><i class="fa-regular fa-circle-info"></i> About</a></li>
+      <li><a href="#services"><i class="fa-solid fa-briefcase"></i> Services</a></li>
+      <li><a href="#contact"><i class="fa-regular fa-envelope"></i> Contact</a></li>
     </ul>
   </nav>
   <div class="menu-toggle"><i class="fas fa-bars"></i></div>
