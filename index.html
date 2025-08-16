@@ -192,12 +192,16 @@ footer {
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
+const slidesContainer = document.querySelector('.slides');
 
 function updateSlide() {
-  document.querySelector('.slides').style.transform = `translateX(-${currentSlide * 100}%)`;
+  slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
 }
 
-// Auto Slide
+// ✅ Start from the first slide
+updateSlide();
+
+// ✅ Auto Slide (always one side, smooth left movement)
 setInterval(() => {
   currentSlide = (currentSlide + 1) % totalSlides;
   updateSlide();
