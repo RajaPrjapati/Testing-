@@ -1,209 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Company Master Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Committee Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  :root{
-    --brand:#C71585;           /* Dark pink */
-    --header-h:64px;           /* JS sets the real height */
-  }
+:root {
+  --brand: #004aad;
+  --light: #fff;
+}
 
-  /* Layout base */
-  html, body { height:100%; }
-  *{ box-sizing:border-box; margin:0; padding:0; }
-  body{
-    font-family: Arial, Helvetica, sans-serif;
-    display:flex; flex-direction:column;
-    padding-top: var(--header-h); /* offset for fixed header */
-    background:#fff;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  /* Header (fixed) */
-  header#site-header{
-    position:fixed; top:0; left:0; right:0; z-index:1001;
-    background:var(--brand); color:#fff;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:10px 20px;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-  }
-  .branding{ display:flex; align-items:center; gap:10px; }
-  .branding img{ width:46px; height:46px; object-fit:cover; border-radius:8px; }
-  .branding h1{ font-size:1.3rem; line-height:1; }
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-  /* Desktop nav */
-  nav ul.desktop-menu{ list-style:none; display:flex; gap:18px; }
-  nav ul.desktop-menu a{ color:#fff; text-decoration:none; font-weight:600; }
+/* Header */
+header {
+  background: var(--brand);
+  color: var(--light);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1000;
+}
 
-  /* Burger (mobile only) */
-  #burger{
-    display:none; background:transparent; border:0; color:#fff;
-    font-size:28px; cursor:pointer; line-height:1;
-  }
+.branding {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  /* Hide mobile menu by default on desktop */
-  #mobile-panel {
+.branding h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.branding img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+/* Navigation */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: var(--light);
+  text-decoration: none;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  nav ul {
     display: none;
   }
-
-  /* Main grows to push footer down */
-  main{ flex:1; padding:24px 20px; }
-
-  /* Slider */
-  .slider{ position:relative; width:100%; overflow:hidden; border-radius:8px; }
-  .slides{
-    display:flex; transition: transform .5s ease-in-out;
+  .menu-toggle {
+    display: block;
   }
-  .slide{ min-width:100%; }
-  .slide img{ display:block; width:100%; height:400px; object-fit:cover; }
+}
 
-  .slider-nav{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between;
-    padding:0 8px; pointer-events:none;
-  }
-  .nav-btn{
-    pointer-events:auto; user-select:none;
-    background:rgba(0,0,0,.35); color:#fff; border:0; border-radius:50%;
-    width:42px; height:42px; font-size:24px; line-height:42px; text-align:center; cursor:pointer;
-  }
+/* Slider */
+.slider {
+  flex: 1;
+  margin-top: 60px; /* header height */
+  margin-bottom: 50px; /* footer height */
+  position: relative;
+  overflow: hidden;
+}
 
-  /* Footer */
-  footer{
-    background:var(--brand); color:#fff; text-align:center; padding:16px 10px;
-  }
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  height: 100%;
+}
 
-  /* --------- Mobile styles --------- */
-  @media (max-width: 768px){
-    nav ul.desktop-menu{ display:none; }   /* hide desktop links */
-    #burger{ display:block; }
-    #mobile-panel {
-      display:flex; /* show on mobile */
-      position:fixed; left:0; top:var(--header-h);
-      width:260px; height:calc(100vh - var(--header-h));
-      background:var(--brand);
-      transform:translateX(-100%);
-      transition:transform .3s ease;
-      z-index:1000;
-      padding:10px 0;
-      flex-direction:column;
-      box-shadow:0 10px 20px rgba(0,0,0,.25);
-    }
-    #mobile-panel.open{ transform:translateX(0); }
+.slide {
+  min-width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
 
-    #mobile-panel a{
-      color:#fff; text-decoration:none; font-weight:600;
-      padding:12px 20px; display:block;
-    }
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
 
-    /* Dim background when menu is open */
-    #overlay{
-      position:fixed; inset:0; background:rgba(0,0,0,.35);
-      opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:999;
-    }
-    #overlay.show{ opacity:1; pointer-events:auto; }
+.prev { left: 10px; }
+.next { right: 10px; }
 
-    /* Smaller slider on mobile */
-    .slide img{ height:250px; }
-  }
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--brand);
+  color: var(--light);
+  text-align: center;
+  padding: 10px;
+  height: 50px;
+}
 </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header id="site-header">
-    <div class="branding">
-      <img src="https://via.placeholder.com/60x60.png?text=Logo" alt="Company Logo">
-      <h1>Committee</h1>
-    </div>
-    <nav aria-label="Primary">
-      <button id="burger" aria-label="Open menu" aria-expanded="false">☰</button>
-      <ul class="desktop-menu">
-        <li><a href="#home">Dashboard</a></li>
-        <li><a href="#about">Member Details</a></li>
-        <li><a href="#srv">Monthly Installment 2025</a></li>
-        <li><a href="#ct">Monthly Installment 2026</a></li>
-        <li><a href="#ct">Paid money to Members</a></li>
-        <li><a href="#ct">Interest</a></li>
-        <li><a href="#ct">Terms & Condition</a></li>
-        <li><a href="#ct">Logout</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <div class="branding">
+    <h1>Committee</h1>
+    <img src="committee-logo.png" alt="Logo">
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+</header>
 
-  <!-- Mobile off-canvas menu -->
-  <aside id="mobile-panel" aria-hidden="true">
-    <li><a href="#home">Dashboard</a></li>
-        <li><a href="#about">Member Details</a></li>
-        <li><a href="#srv">Monthly Installment 2025</a></li>
-        <li><a href="#ct">Monthly Installment 2026</a></li>
-        <li><a href="#ct">Paid money to Members</a></li>
-        <li><a href="#ct">Interest</a></li>
-        <li><a href="#ct">Terms & Condition</a></li>
-        <li><a href="#ct">Logout</a></li>
-  </aside>
-  <div id="overlay"></div>
+<section class="slider">
+  <div class="slides">
+    <div class="slide" style="background-image:url('https://picsum.photos/1200/800?1')"></div>
+    <div class="slide" style="background-image:url('https://picsum.photos/1200/800?2')"></div>
+    <div class="slide" style="background-image:url('https://picsum.photos/1200/800?3')"></div>
+  </div>
+  <button class="slider-btn prev">&#10094;</button>
+  <button class="slider-btn next">&#10095;</button>
+</section>
 
-  <!-- Main -->
-  <main>
-    <!-- Slider -->
-    <div class="slider" aria-label="Image slider">
-      <div class="slides" id="slides">
-        <div class="slide"><img src="https://via.placeholder.com/1400x500/ff7f7f/333333?text=Slide+1" alt="Slide 1"></div>
-        <div class="slide"><img src="https://via.placeholder.com/1400x500/7fbfff/333333?text=Slide+2" alt="Slide 2"></div>
-        <div class="slide"><img src="https://via.placeholder.com/1400x500/7fff7f/333333?text=Slide+3" alt="Slide 3"></div>
-      </div>
-      <div class="slider-nav">
-        <button class="nav-btn" id="prev" aria-label="Previous">‹</button>
-        <button class="nav-btn" id="next" aria-label="Next">›</button>
-      </div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 My Company. All Rights Reserved.
-  </footer>
+<footer>
+  <p>© 2025 Committee. All rights reserved.</p>
+</footer>
 
 <script>
-  // Set CSS var to the actual header height so layout aligns perfectly
-  function setHeaderHeightVar(){
-    const h = document.getElementById('site-header')?.offsetHeight || 64;
-    document.documentElement.style.setProperty('--header-h', h + 'px');
-  }
-  document.addEventListener('DOMContentLoaded', setHeaderHeightVar);
-  window.addEventListener('load', setHeaderHeightVar);
-  window.addEventListener('resize', setHeaderHeightVar);
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+const slidesContainer = document.querySelector('.slides');
 
-  // Mobile menu logic
-  const burger  = document.getElementById('burger');
-  const panel   = document.getElementById('mobile-panel');
-  const overlay = document.getElementById('overlay');
+function updateSlide() {
+  slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
 
-  function openMenu(){
-    panel.classList.add('open'); overlay.classList.add('show');
-    burger.setAttribute('aria-expanded','true'); panel.setAttribute('aria-hidden','false');
-  }
-  function closeMenu(){
-    panel.classList.remove('open'); overlay.classList.remove('show');
-    burger.setAttribute('aria-expanded','false'); panel.setAttribute('aria-hidden','true');
-  }
-  burger.addEventListener('click', ()=> panel.classList.contains('open') ? closeMenu() : openMenu());
-  overlay.addEventListener('click', closeMenu);
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeMenu(); });
-  panel.querySelectorAll('a').forEach(a=> a.addEventListener('click', closeMenu));
-  window.addEventListener('resize', ()=>{ if(window.innerWidth>768) closeMenu(); });
+// Manual Controls
+document.querySelector('.next').addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlide();
+});
 
-  // Simple slider
-  const track = document.getElementById('slides');
-  const slides = track.children.length;
-  let idx = 0;
-  function show(i){ track.style.transform = `translateX(-${i*100}%)`; }
-  document.getElementById('next').addEventListener('click', ()=>{ idx=(idx+1)%slides; show(idx); });
-  document.getElementById('prev').addEventListener('click', ()=>{ idx=(idx-1+slides)%slides; show(idx); });
-  setInterval(()=>{ idx=(idx+1)%slides; show(idx); }, 5000);
+document.querySelector('.prev').addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  updateSlide();
+});
+
+// Auto Slide every 3 seconds
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlide();
+}, 3000);
 </script>
+
 </body>
 </html>
-
-
