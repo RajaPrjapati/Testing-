@@ -8,165 +8,145 @@
 <style>
 :root {
   --dark-pink: #d6336c;  
-  --dark-pink-transparent: rgba(214, 51, 108, 0.9); 
+  --dark-pink-transparent: rgba(214,51,108,0.95); 
   --light: #fff;          
   --dark: #222;
-  --highlight: #ffb3c6; /* highlight color */
 }
 
 /* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body {
   font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  overflow-x: hidden;
+  background:#f4f6f8;
 }
 
 /* Header */
 header {
   background: var(--dark-pink);
   color: var(--light);
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+  padding:10px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:60px;
+  z-index:1000;
 }
 
 .branding {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .branding img {
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-  border-radius: 50%;
+  height:50px;
+  width:50px;
+  border-radius:50%;
+  object-fit:cover;
 }
 
 .branding h1 {
-  font-size: 27px;
-  font-weight: bold;
+  font-size:24px;
 }
 
-/* Navbar */
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  background: var(--dark-pink-transparent);
-  padding: 5px 15px;
-  border-radius: 0 8px 8px 0;
+/* Navbar Desktop */
+header nav ul {
+  display:flex;
+  gap:15px;
 }
 
 nav a {
+  text-decoration:none;
   color: var(--light);
-  text-decoration: none;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s;
-  padding: 6px 10px;
-  border-radius: 6px;
+  font-weight:bold;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:6px 10px;
+  border-radius:6px;
+  transition:0.3s;
 }
 
-nav a i {
-  font-size: 16px;
-}
+nav a i { font-size:16px; }
 
-nav a:hover {
-  background: rgba(255,255,255,0.2);
-  color: #ffd6e0;
-}
+nav a:hover { background: rgba(255,255,255,0.2); color:#ffd6e0; }
 
-/* ✅ Highlight Dashboard */
-nav a.active {
-  background: var(--light);
-  color: var(--dark-pink);
-  font-weight: bold;
-  box-shadow: 0 0 8px rgba(255,255,255,0.4);
-}
+nav a.active { background:#fff; color:var(--dark-pink); }
 
-/* Mobile Menu */
+/* Hamburger icon */
 .menu-toggle {
-  display: none;
-  font-size: 22px;
-  cursor: pointer;
+  display:none;
+  font-size:24px;
+  cursor:pointer;
   color: var(--light);
-}
-
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    position: fixed;
-    top: 60px;
-    left: -250px;
-    height: calc(100% - 60px);
-    width: 250px;
-    gap: 15px;
-    transition: left 0.3s ease;
-    z-index: 999;
-    background: var(--dark-pink-transparent);
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    overflow: hidden;
-  }
-  nav ul.show {
-    left: 0;
-  }
-  .menu-toggle {
-    display: block;
-  }
 }
 
 /* Slider */
 .slider {
-  position: fixed;
-  top: 60px;
-  bottom: 50px;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
+  position:fixed;
+  top:60px;
+  bottom:50px;
+  left:0;
+  right:0;
+  overflow:hidden;
+  z-index:0;
 }
 
 .slides {
-  display: flex;
-  height: 100%;
-  transition: transform 1s ease-in-out;
+  display:flex;
+  height:100%;
+  transition:transform 1s ease-in-out;
 }
 
 .slide {
-  min-width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
+  min-width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
 }
 
 /* Footer */
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:50px;
   background: var(--dark-pink);
   color: var(--light);
-  text-align: center;
-  padding: 15px;
-  z-index: 1000;
+  text-align:center;
+  padding:15px;
+  z-index:1000;
+}
+
+/* Mobile Styles */
+@media (max-width:768px){
+  header nav ul {
+    flex-direction: column;
+    position: fixed;
+    top:60px;
+    bottom:50px;
+    left:-250px;
+    width:230px;
+    padding:20px 10px;
+    background: var(--dark-pink-transparent);
+    border-top-right-radius:20px;
+    border-bottom-right-radius:20px;
+    overflow-y:auto;
+    transition:left 0.3s ease;
+  }
+  header nav ul.show { left:0; }
+  .menu-toggle { display:block; }
+  .slider { left:0; }
 }
 </style>
 </head>
@@ -194,47 +174,38 @@ footer {
 
 <section class="slider">
   <div class="slides">
-    <!-- 10 committee/teamwork images -->
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3182759/pexels-photo-3182759.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184644/pexels-photo-3184644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/1181325/pexels-photo-1181325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=800&w=1200')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg')"></div>
   </div>
 </section>
 
 <footer>
-  <p>Committee started by</p>
-  <p>Raja Prajapati & Anuj Lodhi</p>
+  <p>Committee started by Raja Prajapati & Anuj Lodhi</p>
 </footer>
 
 <script>
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('nav ul');
+
+menuToggle.addEventListener('click', ()=>{
+  nav.classList.toggle('show');
+});
+
+// Slider
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
-const slidesContainer = document.querySelector('.slides');
 
-function updateSlide() {
-  slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+function updateSlide(){
+  slides[0] && (document.querySelector('.slides').style.transform=`translateX(-${currentSlide*100}%)`);
 }
-
 updateSlide();
-
-// Auto Slide
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % totalSlides;
+setInterval(()=>{
+  currentSlide=(currentSlide+1)%totalSlides;
   updateSlide();
-}, 4000);
-
-// Mobile Menu Toggle
-document.querySelector('.menu-toggle').addEventListener('click', () => {
-  document.querySelector('nav ul').classList.toggle('show');
-});
+},4000);
 </script>
 
 </body>
