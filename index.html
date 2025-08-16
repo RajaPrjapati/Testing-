@@ -112,10 +112,12 @@ nav a:hover {
     background: var(--dark-pink-transparent);
 
     /* ✅ Rounded both top-right and bottom-right */
-    border-radius: 0 12px 12px 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 
     padding-top: 20px;
     padding-bottom: 20px;
+    overflow: hidden; /* ensure rounded corners are visible */
   }
   nav ul.show {
     left: 0;
