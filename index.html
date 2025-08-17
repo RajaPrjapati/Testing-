@@ -140,14 +140,14 @@ footer div {
   line-height: 1; /* remove extra space */
 }
 
-/* Desktop footer spacing: small normal space */
+/* Desktop footer spacing */
 @media (min-width: 769px) {
   footer div + div {
-    margin-left: 5px; /* small normal space between texts */
+    margin-left: 5px;
   }
 }
 
-/* Mobile: stack footer text and navbar */
+/* Mobile */
 @media (max-width:768px){
   header nav ul {
     flex-direction: column;
@@ -162,15 +162,15 @@ footer div {
     border-bottom-right-radius:20px;
     overflow-y:auto;
     transition:left 0.3s ease;
-    list-style: none; /* remove bullets on mobile */
+    list-style: none;
   }
   header nav ul.show { left:0; }
   .menu-toggle { display:block; }
   .slider { left:0; }
 
   footer {
-    flex-direction: column; /* two lines on mobile */
-    line-height: 1; /* no extra space between lines */
+    flex-direction: column; 
+    line-height: 1;
   }
 }
 </style>
@@ -197,12 +197,20 @@ footer div {
   <div class="menu-toggle"><i class="fas fa-bars"></i></div>
 </header>
 
+<!-- Slider with 10 images -->
 <section class="slider">
   <div class="slides">
     <div class="slide" style="background-image:url('https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg')"></div>
     <div class="slide" style="background-image:url('https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg')"></div>
     <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg')"></div>
     <div class="slide" style="background-image:url('https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184402/pexels-photo-3184402.jpeg')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg')"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184318/pexels-photo-3184318.jpeg')"></div>
+  </div>
 </section>
 
 <footer>
@@ -224,7 +232,7 @@ const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
 
 function updateSlide(){
-  slides[0] && (document.querySelector('.slides').style.transform=`translateX(-${currentSlide*100}%)`);
+  document.querySelector('.slides').style.transform=`translateX(-${currentSlide*100}%)`;
 }
 updateSlide();
 setInterval(()=>{
@@ -235,8 +243,3 @@ setInterval(()=>{
 
 </body>
 </html>
-
-
-
-
-
