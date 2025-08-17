@@ -1,179 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Main Page</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root {
-  --dark-pink: #d6336c;  
-  --dark-pink-transparent: rgba(214,51,108,0.95); 
-  --light: #fff;          
-  --dark: #222;
+:root{
+  --dark-pink:#d6336c;
+  --dark-pink-transparent:rgba(214,51,108,0.95);
+  --light:#fff;
+  --dark:#222;
 }
 
 /* Reset */
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background:#f4f6f8;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Arial, sans-serif;background:#f4f6f8;}
 
 /* Header */
-header {
-  background: var(--dark-pink);
-  color: var(--light);
+header{
+  background:var(--dark-pink);
+  color:var(--light);
   padding:10px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:60px;
+  position:fixed; top:0; left:0; width:100%; height:60px;
   z-index:1000;
 }
-
-.branding {
-  display:flex;
-  align-items:center;
-  gap:10px;
+.branding{display:flex;align-items:center;gap:10px;}
+.branding img{
+  height:50px;width:50px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--light); background:#fff;
 }
-
-.branding img {
-  height:50px;
-  width:50px;
-  border-radius:50%;
-  object-fit:cover;
-  border: 3px solid var(--dark-pink); /* round border around logo */
-  background:#fff; /* optional: white bg behind image */
+.branding h1{font-size:24px;margin:0;}
+header nav ul{display:flex;gap:15px;list-style:none;}
+nav a{
+  text-decoration:none;color:var(--light);font-weight:bold;
+  display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:6px;transition:.3s;
 }
-
-.branding h1 {
-  font-size:24px;
-}
-
-/* Navbar Desktop */
-header nav ul {
-  display:flex;
-  gap:15px;
-  list-style: none; 
-  padding: 0;
-  margin: 0;
-}
-
-nav a {
-  text-decoration:none;
-  color: var(--light);
-  font-weight:bold;
-  display:flex;
-  align-items:center;
-  gap:4px;
-  padding:6px 10px;
-  border-radius:6px;
-  transition:0.3s;
-}
-
-nav a i { font-size: 16px; }
-
-nav a:hover { background: rgba(255,255,255,0.2); color:#ffd6e0; }
-
-nav a.active { background:#fff; color:var(--dark-pink); }
-
-/* Hamburger icon */
-.menu-toggle {
-  display:none;
-  font-size:24px;
-  cursor:pointer;
-  color: var(--light);
-}
+nav a:hover{background:rgba(255,255,255,.2);}
+nav a.active{background:#fff;color:var(--dark-pink);}
+.menu-toggle{display:none;font-size:24px;cursor:pointer;color:var(--light);}
 
 /* Slider */
-.slider {
+.slider{
   position:fixed;
-  top:60px;
-  bottom:50px;
-  left:0;
-  right:0;
+  top:60px;          /* below header */
+  bottom:60px;       /* above footer */
+  left:0; right:0;
   overflow:hidden;
   z-index:0;
+  background:#000;   /* shows behind images when aspect differs */
 }
-
-.slides {
+.slides{
   display:flex;
   height:100%;
-  transition:transform 1s ease-in-out;
+  transition:transform 0.8s ease-in-out;
+  will-change: transform;
 }
-
-.slide {
-  min-width:100%;
+.slide{
+  flex:0 0 100%;     /* each slide = full viewport width */
   height:100%;
-  background-size:cover;
-  background-position:center;
+  position:relative;
+}
+.slide img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;  /* fill area; change to 'contain' if you prefer no crop */
 }
 
 /* Footer */
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: var(--dark-pink);
-  color: var(--light);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-  height: 60px;
-  font-weight: bold;
-  text-align: center;
-  z-index: 1000;
+footer{
+  position:fixed; bottom:0; left:0; width:100%;
+  background:var(--dark-pink); color:var(--light);
+  display:flex; flex-direction:row; justify-content:center; align-items:center;
+  padding:10px 0; height:60px; font-weight:bold; text-align:center; z-index:1000;
 }
+footer div{line-height:1;}
+@media(min-width:769px){ footer div + div{margin-left:6px;} }
 
-footer div {
-  line-height: 1;
-}
-
-/* Desktop footer spacing */
-@media (min-width: 769px) {
-  footer div + div {
-    margin-left: 5px;
+/* Mobile menu */
+@media(max-width:768px){
+  header nav ul{
+    flex-direction:column; position:fixed; top:60px; bottom:60px; left:-250px;
+    width:230px; padding:20px 10px; background:var(--dark-pink-transparent);
+    border-top-right-radius:20px; border-bottom-right-radius:20px;
+    overflow-y:auto; transition:left .3s ease;
   }
-}
-
-/* Mobile */
-@media (max-width:768px){
-  header nav ul {
-    flex-direction: column;
-    position: fixed;
-    top:60px;
-    bottom:60px; 
-    left:-250px;
-    width:230px;
-    padding:20px 10px;
-    background: var(--dark-pink-transparent);
-    border-top-right-radius:20px;
-    border-bottom-right-radius:20px;
-    overflow-y:auto;
-    transition:left 0.3s ease;
-    list-style: none;
-  }
-  header nav ul.show { left:0; }
-  .menu-toggle { display:block; }
-  .slider { left:0; }
-
-  footer {
-    flex-direction: column; 
-    line-height: 1;
-  }
+  header nav ul.show{left:0;}
+  .menu-toggle{display:block;}
+  footer{flex-direction:column;}
 }
 </style>
 </head>
@@ -186,70 +103,71 @@ footer div {
   </div>
   <nav>
     <ul>
-      <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-      <li><a href="#about"><i class="fa-solid fa-users"></i> Users </a></li>
-      <li><a href="#services"><i class="fa-solid fa-sack-dollar"></i> Year 2025</a></li>
-      <li><a href="#contact"><i class="fa-solid fa-money-bill-wave"></i> Year 2026</a></li>
-      <li><a href="#paid"><i class="fa-solid fa-hand-holding-dollar"></i> Money Paid</a></li>
-      <li><a href="#interest"><i class="fa-solid fa-percent"></i> Interest</a></li>
-      <li><a href="#terms"><i class="fa-solid fa-file-contract"></i> T&C</a></li>
-      <li><a href="#logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+      <li><a href="#home" class="active"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+      <li><a href="#about"><i class="fa-solid fa-users"></i>Users</a></li>
+      <li><a href="#services"><i class="fa-solid fa-sack-dollar"></i>Year 2025</a></li>
+      <li><a href="#contact"><i class="fa-solid fa-money-bill-wave"></i>Year 2026</a></li>
+      <li><a href="#paid"><i class="fa-solid fa-hand-holding-dollar"></i>Money Paid</a></li>
+      <li><a href="#interest"><i class="fa-solid fa-percent"></i>Interest</a></li>
+      <li><a href="#terms"><i class="fa-solid fa-file-contract"></i>T&C</a></li>
+      <li><a href="#logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
     </ul>
   </nav>
   <div class="menu-toggle"><i class="fas fa-bars"></i></div>
 </header>
 
-<!-- Slider with 10 images -->
-<section class="slider">
-  <div class="slides">
-    <div class="slide" style="background-image:url('slide-1.jpg')"></div>
-    <div class="slide" style="background-image:url('slide-2.jpg')"></div>
-    <div class="slide" style="background-image:url('slide-3.jpg')"></div>
-    <div class="slide" style="background-image:url('slide-4.jpg')"></div>
-    <div class="slide" style="background-image:url('slide-5.jpg')"></div>
-    <div class="slide" style="background-image:url('slide-6.jpg')"></div>
-    <div class="slide" style="background-image:url('slide-7.jpg')"></div>
-    <div class="slide" style="background-image:url('slide-8.jpg')"></div>
-    <div class="slide" style="background-image:url('slide-9.jpg')"></div>
-    <div class="slide" style="background-image:url('slide-10.jpg')"></div>
+<!-- Slider -->
+<section class="slider" aria-label="Image slider">
+  <div class="slides" id="slides">
+    <div class="slide"><img src="slide-1.jpg" alt="Slide 1"></div>
+    <div class="slide"><img src="slide-2.jpg" alt="Slide 2"></div>
+    <div class="slide"><img src="slide-3.jpg" alt="Slide 3"></div>
+    <div class="slide"><img src="slide-4.jpg" alt="Slide 4"></div>
+    <div class="slide"><img src="slide-5.jpg" alt="Slide 5"></div>
+    <div class="slide"><img src="slide-6.jpg" alt="Slide 6"></div>
+    <div class="slide"><img src="slide-7.jpg" alt="Slide 7"></div>
+    <div class="slide"><img src="slide-8.jpg" alt="Slide 8"></div>
+    <div class="slide"><img src="slide-9.jpg" alt="Slide 9"></div>
+    <div class="slide"><img src="slide-10.jpg" alt="Slide 10"></div>
   </div>
 </section>
 
 <footer>
   <div>Committee Started by</div>
-  <div>Raja Prajapati & Anuj Lodhi</div>
+  <div>&nbsp;Raja Prajapati &amp; Anuj Lodhi</div>
 </footer>
 
 <script>
+/* Mobile menu */
 const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('nav ul');
+const navList = document.querySelector('header nav ul');
+menuToggle.addEventListener('click', () => navList.classList.toggle('show'));
 
-menuToggle.addEventListener('click', ()=>{
-  nav.classList.toggle('show');
-});
+/* Slider JS */
+let current = 0;
+const slideEls = document.querySelectorAll('.slide');
+const total = slideEls.length;
+const track = document.getElementById('slides');
 
-// Slider
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
-
-function updateSlide(){
-  document.querySelector('.slides').style.transform=`translateX(-${currentSlide*100}%)`;
+function goTo(idx){
+  current = (idx + total) % total;
+  track.style.transform = `translateX(-${current * 100}%)`;
 }
-updateSlide();
-setInterval(()=>{
-  currentSlide=(currentSlide+1)%totalSlides;
-  updateSlide();
-},4000);
+
+// start
+goTo(0);
+
+// auto-play
+setInterval(() => goTo(current + 1), 4000);
+
+// Optional: update on image load (prevents jump on very slow loads)
+slideEls.forEach(slide => {
+  const img = slide.querySelector('img');
+  if (!img.complete) {
+    img.addEventListener('load', () => goTo(current));
+  }
+});
 </script>
 
 </body>
-      </html>
-
-
-
-
-
-
-
-
+</html>
