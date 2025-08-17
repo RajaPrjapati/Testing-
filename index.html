@@ -234,7 +234,7 @@ const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
 
 function updateSlide(){
-  document.querySelector('.slides').style.transform=translateX(-${currentSlide*100}%);
+  document.querySelector('.slides').style.transform=`translateX(-${currentSlide*100}%)`;
 }
 updateSlide();
 setInterval(()=>{
@@ -244,4 +244,4 @@ setInterval(()=>{
 </script>
 
 </body>
-      </html>
+      </html>
