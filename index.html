@@ -1,188 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Main Page</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-  --dark-pink: #d6336c;  
-  --dark-pink-transparent: rgba(214,51,108,0.95); 
-  --light: #fff;          
-  --dark: #222;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Committee Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-/* Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: Arial, sans-serif; background:#f4f6f8; }
+    body {
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-/* Header */
-header {
-  background: var(--dark-pink);
-  color: var(--light);
-  padding:10px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:61px;
-  z-index:1000;
-}
-.branding { display:flex; align-items:center; gap:10px; }
-.branding img {
-  height:50px; width:50px;
-  border-radius:50%; object-fit:cover;
-  border: 3px solid var(--dark-pink);
-  background:#fff;
-}
-.branding h1 { font-size:24px; }
+    /* Card */
+    .login-container {
+      background: #fff;
+      width: 90%;
+      max-width: 380px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
-/* Navbar Desktop */
-header nav ul {
-  display:flex; gap:15px;
-  list-style: none; padding: 0; margin: 0;
-}
-nav a {
-  text-decoration:none;
-  color: var(--light);
-  font-weight:bold;
-  display:flex;
-  align-items:center;
-  gap:4px;
-  padding:6px 1px;
-  border-radius:6px;
-  transition:0.3s;
-  position:relative;
-}
-nav a i { font-size:16px; }
-nav a:hover { background: rgba(255,255,255,0.2); color:#ffd6e0; }
-nav a.active { background:#fff; color:var(--dark-pink); }
+    /* Logo + Title */
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 40px;
+    }
+    .logo h2 {
+      color: #d6336c;
+      font-size: 22px;
+    }
 
-/* 🔥 Underline only for selected menu items */
-nav a.underline::after {
-  content:"";
-  position:absolute;
-  left:0; right:0;
-  bottom:-3px;
-  height:1px;
-  background:#fff;
-  transition:0.3s;
-}
-nav a.underline:hover::after { background:#ffd6e0; }
+    /* Input fields */
+    .input-group {
+      position: relative;
+      margin: 15px 0;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+    }
+    .input-group i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+    }
 
-/* 🚫 Remove underline on desktop */
-@media (min-width:769px){
-  nav a.underline::after { display:none; }
-}
+    /* Button */
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #d6336c;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #b82b5c;
+    }
 
-/* Hamburger icon */
-.menu-toggle { display:none; font-size:24px; cursor:pointer; color: var(--light); }
+    /* Links */
+    .links {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .links a {
+      color: #d6336c;
+      text-decoration: none;
+    }
 
-/* Slider */
-.slider {
-  position:fixed; top:6px; bottom:50px; left:0; right:0;
-  overflow:hidden; z-index:0;
-}
-.slides { display:flex; height:100%; transition:transform 1s ease-in-out; }
-.slide {
-  min-width:100%; height:100%;
-  background-size:cover; background-position:center;
-}
+    /* Footer */
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #555;
+    }
 
-/* Footer */
-footer {
-  position: fixed; bottom: 0; left: 0;
-  width: 100%; background: var(--dark-pink);
-  color: var(--light);
-  display:flex; justify-content:center; align-items:center;
-  padding:10px 0; height:60px;
-  font-weight:bold; text-align:center; z-index:1000;
-}
-footer div { line-height:1; }
-@media (min-width:769px) { footer div + div { margin-left: 5px; } }
-
-/* Mobile */
-@media (max-width:768px){
-  header nav ul {
-    flex-direction: column;
-    position: fixed;
-    top:62px; bottom:240px; left:-250px;
-    width:150px; padding:20px 17px;
-    background: var(--dark-pink-transparent);
-    border-top-right-radius:20px; border-bottom-right-radius:20px;
-    overflow-y:auto; transition:left 0.3s ease;
-    list-style:none;
-  }
-  header nav ul.show { left:0; }
-  .menu-toggle { display:block; }
-  .slider { left:0; }
-  footer { flex-direction:column; line-height:1; }
-}
-</style>
+    /* Responsive */
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 20px;
+      }
+      .logo h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="branding">
-    <img src="logo-img4.png" alt="Logo">
-    <h1>Committee</h1>
+  <div class="login-container">
+    <!-- Logo + Title -->
+    <div class="logo">
+      <img src="https://img.icons8.com/color/96/groups.png" alt="Committee Logo">
+      <h2>Committee Login</h2>
+    </div>
+
+    <!-- Form -->
+    <form>
+      <div class="input-group">
+        <input type="text" placeholder="Enter Username" required>
+        <i class="fa fa-user"></i>
+      </div>
+      <div class="input-group">
+        <input type="password" placeholder="Enter Password" required>
+        <i class="fa fa-lock"></i>
+      </div>
+      <button class="btn" type="submit">Login</button>
+    </form>
+
+    <!-- Extra Links -->
+    <div class="links">
+      <p><a href="#">Forgot Password?</a></p>
+      <p>Don't have an account? <a href="#">Sign Up</a></p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Committee Started by Raja Prajapati & Anuj Lodhi</p>
+    </div>
   </div>
-  <nav>
-    <ul>
-      <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-      <li><a href="#about" class="underline"><i class="fa-solid fa-users"></i> Users</a></li>
-      <li><a href="#services" class="underline"><i class="fa-solid fa-sack-dollar"></i> Year 2025</a></li>
-      <li><a href="#contact" class="underline"><i class="fa-solid fa-money-bill-wave"></i> Year 2026</a></li>
-      <li><a href="#paid" class="underline"><i class="fa-solid fa-hand-holding-dollar"></i> Money Paid</a></li>
-      <li><a href="#interest" class="underline"><i class="fa-solid fa-percent"></i> Interest</a></li>
-      <li><a href="#terms" class="underline"><i class="fa-solid fa-file-contract"></i> T&C</a></li>
-      <li><a href="#logout" class="underline"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-    </ul>
-  </nav>
-  <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-</header>
-
-<!-- Slider -->
-<section class="slider">
-  <div class="slides">
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184402/pexels-photo-3184402.jpeg')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg')"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/3184318/pexels-photo-3184318.jpeg')"></div>
-  </div>
-</section>
-
-<footer>
-  <div>Committee Started by</div>
-  <div>Raja Prajapati & Anuj Lodhi</div>
-</footer>
-
-<script>
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('nav ul');
-menuToggle.addEventListener('click', ()=> nav.classList.toggle('show'));
-
-// Slider
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
-function updateSlide(){
-  document.querySelector('.slides').style.transform=`translateX(-${currentSlide*100}%)`;
-}
-updateSlide();
-setInterval(()=>{
-  currentSlide=(currentSlide+1)%totalSlides;
-  updateSlide();
-},4000);
-</script>
 
 </body>
 </html>
