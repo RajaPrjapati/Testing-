@@ -68,6 +68,7 @@
       top: 50%;
       transform: translateY(-50%);
       color: #888;
+      cursor: pointer;
     }
 
     /* Button */
@@ -87,20 +88,10 @@
       background: #b82b5c;
     }
 
-    /* Links */
-    .links {
-      margin-top: 15px;
-      font-size: 14px;
-    }
-    .links a {
-      color: #d6336c;
-      text-decoration: none;
-    }
-
     /* Footer */
     .footer {
       margin-top: 20px;
-      font-size: 9px;
+      font-size: 11px;
       color: #555;
     }
 
@@ -132,18 +123,32 @@
       </div>
       <div class="input-group">
         <input type="password" id="password" placeholder="Enter Password" required>
-        <i class="fa fa-lock"></i>
+        <i class="fa fa-eye" id="togglePassword"></i>
       </div>
       <button class="btn" type="submit">Login</button>
     </form>
     
     <!-- Footer -->
     <div class="footer">
-      <p>ID Your fist name in lowercase, password same with @123</p>
+      <p>Username = first name (lowercase) | Password = name@123</p>
     </div>
   </div>
 
   <script>
+    // Show/Hide Password
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+
+    togglePassword.addEventListener("click", function () {
+      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+      passwordInput.setAttribute("type", type);
+
+      // Toggle eye / eye-slash icon
+      this.classList.toggle("fa-eye");
+      this.classList.toggle("fa-eye-slash");
+    });
+
+    // Validate Login
     function validateLogin(event) {
       event.preventDefault();
 
@@ -169,9 +174,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
