@@ -72,6 +72,11 @@ nav a.underline::after {
 }
 nav a.underline:hover::after { background:#ffd6e0; }
 
+/* 🚫 Remove underline on desktop */
+@media (min-width:769px){
+  nav a.underline::after { display:none; }
+}
+
 /* Hamburger icon */
 .menu-toggle { display:none; font-size:24px; cursor:pointer; color: var(--light); }
 
@@ -181,10 +186,3 @@ setInterval(()=>{
 
 </body>
 </html>
-
-
-
-
-
-
-
