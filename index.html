@@ -3,175 +3,301 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Member Details</title>
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
     body {
-      background: #f8f8f8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f9fa; /* same as dashboard style */
     }
 
-    /* Card */
-    .login-container {
-      background: #fff;
-      width: 90%;
-      max-width: 380px;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
+    /* Fixed header + search */
+    .header-container {
+      position: sticky;
+      top: 0;
+      background: #d6336c; /* dark pink like dashboard */
+      color: white;
+      padding: 10px;
+      z-index: 1000;
     }
 
-    /* Logo + Title */
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .logo img {
-      width: 40px;
-    }
-    .logo h2 {
-      color: #d6336c;
-      font-size: 22px;
+    .header-container h2 {
+      margin: 0;
+      font-size: 20px;
     }
 
-    /* Input fields */
-    .input-group {
-      position: relative;
-      margin: 15px 0;
+    .search-container {
+      margin-top: 8px;
     }
-    .input-group input {
+
+    .search-container input {
       width: 100%;
-      padding: 12px 40px 12px 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      max-width: 400px;
+      box-sizing: border-box; /* ✅ prevents overflow */
+      padding: 8px;
       font-size: 14px;
-      outline: none;
-    }
-    .input-group i {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #888;
-      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    /* Button */
-    .btn {
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
       width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: #d6336c;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #b82b5c;
     }
 
-    /* Footer */
-    .footer {
-      margin-top: 20px;
-      font-size: 9px;
-      color: #555;
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      font-size: small;
+      padding: 6px;
     }
 
-    /* Responsive */
-    @media (max-width: 480px) {
-      .login-container {
-        padding: 20px;
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .tbl th {
+      background-color: lightblue;
+      position: sticky;
+      top: 85px; /* below header & search */
+      z-index: 999;
+    }
+
+    /* Ensure Total row same color */
+    .total-row th, .total-row td {
+      background-color: lightblue !important;
+    }
+
+    @media (max-width: 600px) {
+      .header-container h2 {
+        font-size: 16px;
       }
-      .logo h2 {
-        font-size: 20px;
+      .search-container input {
+        width: 100%; /* ✅ fits screen */
+        font-size: 12px;
+      }
+      td, th {
+        font-size: 12px;
+        padding: 4px;
       }
     }
   </style>
 </head>
 <body>
-
-  <div class="login-container">
-    <!-- Logo + Title -->
-    <div class="logo">
-      <img src="https://img.icons8.com/color/96/groups.png" alt="Committee Logo">
-      <h2>Committee Login</h2>
-    </div>
-
-    <!-- Form -->
-    <form onsubmit="return validateLogin(event)">
-      <div class="input-group">
-        <input type="text" id="username" placeholder="Enter Username" required>
-        <i class="fa fa-user"></i>
-      </div>
-      <div class="input-group">
-        <input type="password" id="password" placeholder="Enter Password" required>
-        <i class="fa fa-eye" id="togglePassword"></i>
-      </div>
-      <button class="btn" type="submit">Login</button>
-    </form>
-    
-    <!-- Footer -->
-    <div class="footer">
-      <p>ID your first name lowercase & Password same@123</p>
+  <!-- Fixed Header + Search -->
+  <div class="header-container">
+    <h2><a href="index.html" style="color:white; text-decoration:none;">Member Details</a></h2>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search by Name or Status...">
     </div>
   </div>
 
+  <!-- Table -->
+  <table id="mytable" class="tbl">
+    <tr>
+      <th>S.N</th>
+      <th>Member Name</th>
+      <th>Contact</th>
+      <th>Reference</th>
+      <th>Status</th>
+    </tr>
+
+    <tr>
+      <td>1.</td>
+      <td>Mr. Anuj Lodhi</td>
+      <td>9001553582</td>
+      <td>Anuj Lodhi</td>
+      <td>Paid✅</td>
+    </tr>
+    <tr>
+      <td>2.</td>
+      <td>Ms. Aasani Kumari</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3.</td>
+      <td>Mr. Raj Bahadur</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>4.</td>
+      <td>Ms. Vijay Laxmi</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>5.</td>
+      <td>Mr. Shiv Prakash</td>
+      <td></td>
+      <td></td>
+      <td>Paid✅</td>
+    </tr>
+    <tr style="color:red;">
+      <td>6.</td>
+      <td>Ms. Sarita Rajpoot</td>
+      <td>Left on 10 May 2025</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>7.</td>
+      <td>Mr. Naval Kishor</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>8.</td>
+      <td>Mr. Surendra Kumar</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>9.</td>
+      <td>Mr. Mukesh Kumar</td>
+      <td></td>
+      <td></td>
+      <td>Paid✅</td>
+    </tr>
+    <tr>
+      <td>10.</td>
+      <td>Mr. Tileshar Kumar</td>
+      <td></td>
+      <td></td>
+      <td>Paid✅</td>
+    </tr>
+    <tr>
+      <td>11.</td>
+      <td>Mr. Prabhu Dayal</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>12.</td>
+      <td>Mr. Ajay Prajapati</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>13.</td>
+      <td>Mr. Subham Kumar</td>
+      <td></td>
+      <td></td>
+      <td>Paid✅</td>
+    </tr>
+    <tr>
+      <td>14.</td>
+      <td>Mr. Sudhir Kumar</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>15.</td>
+      <td>Mr. Mahaveer Prajapati</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>16.</td>
+      <td>Mr. Ravi Kumar</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>17.</td>
+      <td>Mr. Roshan Kumar</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr style="color:red;">
+      <td>18.</td>
+      <td>Mr. Sonu Raj</td>
+      <td>Left on 10 May 2025</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>19.</td>
+      <td>Mr. Raja Prajapati</td>
+      <td>7014758446</td>
+      <td>Raja Prajapati</td>
+      <td>Paid✅</td>
+    </tr>
+    <tr>
+      <td>20.</td>
+      <td>Ms. Annu Kumari</td>
+      <td></td>
+      <td></td>
+      <td>Paid✅</td>
+    </tr>
+    <tr>
+      <td>21.</td>
+      <td>Ms. Kittu Kumari</td>
+      <td></td>
+      <td></td>
+      <td>Paid✅</td>
+    </tr>
+    <tr>
+      <td>22.</td>
+      <td>Ms. Muskan Kumari</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>23.</td>
+      <td>Mr. Aniket Kumar</td>
+      <td></td>
+      <td></td>
+      <td>Paid✅</td>
+    </tr>
+    <tr>
+      <td>24.</td>
+      <td>Ms. Sweta Kumari</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>25.</td>
+      <td>Mr. Bharat Prajapati</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="total-row">
+      <th></th>
+      <th>Total</th>
+      <th></th>
+      <td></td>
+      <th></th>
+    </tr>
+  </table>
+
   <script>
-    // Show/Hide Password
-    const togglePassword = document.getElementById("togglePassword");
-    const passwordInput = document.getElementById("password");
+    document.getElementById("searchInput").addEventListener("keyup", function() {
+      let filter = this.value.toLowerCase();
+      let rows = document.querySelectorAll("#mytable tr");
 
-    togglePassword.addEventListener("click", function () {
-      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-      passwordInput.setAttribute("type", type);
-
-      // Toggle eye / eye-slash icon
-      this.classList.toggle("fa-eye");
-      this.classList.toggle("fa-eye-slash");
+      rows.forEach((row, index) => {
+        if (index === 0) return; // skip header
+        let text = row.innerText.toLowerCase();
+        row.style.display = text.includes(filter) ? "" : "none";
+      });
     });
-
-    // Validate Login
-    function validateLogin(event) {
-      event.preventDefault();
-
-      let username = document.getElementById("username").value.trim().toLowerCase();
-      let password = document.getElementById("password").value.trim();
-
-      // Allowed users and passwords
-      const users = {
-        "raja": "raja@123",
-        "anuj": "anuj@123",
-        "ajay": "ajay@123"
-      };
-
-      if (users[username] && users[username] === password) {
-        alert("Login Successful! Welcome " + username.charAt(0).toUpperCase() + username.slice(1));
-        // Redirect after login
-        window.location.href = "home.html"; // change this to your home page
-      } else {
-        alert("Invalid Username or Password!");
-      }
-    }
   </script>
-
 </body>
 </html>
-
