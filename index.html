@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Committee Login</title>
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
@@ -13,74 +15,102 @@
     }
 
     body {
-      height: 100vh;
+      background: #f8f8f8;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #d6336c, #ff6f91);
+      height: 100vh;
     }
 
+    /* Card */
     .login-container {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
+      background: #fff;
       width: 90%;
-      max-width: 400px;
-      box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+      max-width: 380px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
       text-align: center;
     }
 
-    .login-container h2 {
+    /* Logo + Title */
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       margin-bottom: 20px;
+    }
+    .logo img {
+      width: 40px;
+    }
+    .logo h2 {
       color: #d6336c;
+      font-size: 22px;
     }
 
+    /* Input fields */
     .input-group {
-      margin-bottom: 15px;
-      text-align: left;
+      position: relative;
+      margin: 15px 0;
     }
-
-    .input-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #444;
-    }
-
     .input-group input {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
+      padding: 12px 40px 12px 15px;
       border-radius: 8px;
-      font-size: 16px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+    }
+    .input-group i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
     }
 
+    /* Button */
     .btn {
       width: 100%;
       padding: 12px;
       border: none;
       border-radius: 8px;
       background: #d6336c;
-      color: white;
+      color: #fff;
       font-size: 16px;
       cursor: pointer;
+      margin-top: 10px;
       transition: 0.3s;
     }
-
     .btn:hover {
-      background: #b52d5a;
+      background: #b82b5c;
     }
 
-    .error {
-      color: red;
-      margin-top: 10px;
-      display: none;
+    /* Links */
+    .links {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .links a {
+      color: #d6336c;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #555;
     }
 
     /* Responsive */
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
       .login-container {
         padding: 20px;
+      }
+      .logo h2 {
+        font-size: 20px;
       }
     }
   </style>
@@ -88,24 +118,45 @@
 <body>
 
   <div class="login-container">
-    <h2>Committee Login</h2>
-    <div class="input-group">
-      <label for="username">User Name</label>
-      <input type="text" id="username" placeholder="Enter your name">
+    <!-- Logo + Title -->
+    <div class="logo">
+      <img src="https://img.icons8.com/color/96/groups.png" alt="Committee Logo">
+      <h2>Committee Login</h2>
     </div>
-    <div class="input-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter your password">
+
+    <!-- Form -->
+    <form onsubmit="return validateLogin(event)">
+      <div class="input-group">
+        <input type="text" id="username" placeholder="Enter Username" required>
+        <i class="fa fa-user"></i>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Enter Password" required>
+        <i class="fa fa-lock"></i>
+      </div>
+      <button class="btn" type="submit">Login</button>
+    </form>
+
+    <!-- Extra Links -->
+    <div class="links">
+      <p><a href="#">Forgot Password?</a></p>
+      <p>Don't have an account? <a href="#">Sign Up</a></p>
     </div>
-    <button class="btn" onclick="login()">Login</button>
-    <p class="error" id="errorMsg">Invalid username or password!</p>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Committee Started by Raja Prajapati & Anuj Lodhi</p>
+    </div>
   </div>
 
   <script>
-    function login() {
-      const username = document.getElementById("username").value.trim().toLowerCase();
-      const password = document.getElementById("password").value.trim();
+    function validateLogin(event) {
+      event.preventDefault();
 
+      let username = document.getElementById("username").value.trim().toLowerCase();
+      let password = document.getElementById("password").value.trim();
+
+      // Allowed users and passwords
       const users = {
         "raja": "raja@123",
         "anuj": "anuj@123",
@@ -113,10 +164,11 @@
       };
 
       if (users[username] && users[username] === password) {
-        // Redirect to your committee page
-        window.location.href = "index.html"; // <-- Change to your actual page
+        alert("Login Successful! Welcome " + username.charAt(0).toUpperCase() + username.slice(1));
+        // Redirect after login
+        window.location.href = "home.html"; // change this to your home page
       } else {
-        document.getElementById("errorMsg").style.display = "block";
+        alert("Invalid Username or Password!");
       }
     }
   </script>
