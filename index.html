@@ -51,23 +51,25 @@ nav a.active{background:#fff;color:var(--dark-pink);}
   left:0; right:0;
   overflow:hidden;
   z-index:0;
-  background:#000;   /* shows behind images when aspect differs */
+  background:#000;   /* black behind images */
 }
 .slides{
   display:flex;
   height:100%;
   transition:transform 0.8s ease-in-out;
-  will-change: transform;
 }
 .slide{
-  flex:0 0 100%;     /* each slide = full viewport width */
+  flex:0 0 100%;     /* full width per slide */
   height:100%;
-  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#000;   /* fill space */
 }
 .slide img{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover;  /* fill area; change to 'contain' if you prefer no crop */
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;   /* FULL image always visible */
 }
 
 /* Footer */
@@ -159,14 +161,6 @@ goTo(0);
 
 // auto-play
 setInterval(() => goTo(current + 1), 4000);
-
-// Optional: update on image load (prevents jump on very slow loads)
-slideEls.forEach(slide => {
-  const img = slide.querySelector('img');
-  if (!img.complete) {
-    img.addEventListener('load', () => goTo(current));
-  }
-});
 </script>
 
 </body>
