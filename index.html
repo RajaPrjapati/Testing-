@@ -3,243 +3,223 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Member Details</title>
+  <title>Year 2025</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      margin: 0;
-      padding: 0;
+      background: white; /* White background */
+      margin: 20px;
     }
-
     h2 {
-      background: #d6336c;
-      color: white;
-      padding: 12px;
-      margin: 0;
       text-align: center;
-      font-size: 1.4rem;
+      color: #d6336c; /* Dark Pink Title */
     }
-
-    h2 a {
-      color: white;
+    a {
       text-decoration: none;
+      color: #d6336c;
     }
-
-    .search-container {
+    /* Search Box */
+    #searchBox {
+      margin: 15px auto;
+      display: block;
+      width: 60%;
+      max-width: 400px;
       padding: 10px;
-      text-align: center;
-      background: #fff;
+      border: 2px solid #d6336c;
+      border-radius: 8px;
+      font-size: 16px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
-    .search-container input {
-      width: 90%;
-      max-width: 400px;
-      padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-      box-sizing: border-box;
+    /* Table */
+    .table-container {
+      overflow-x: auto; /* Mobile scroll */
+      margin-top: 15px;
     }
-
     table {
-      font-family: Arial, sans-serif;
-      border-collapse: collapse;
       width: 100%;
-      margin-top: 10px;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     th, td {
       border: 1px solid #ddd;
-      text-align: left;
-      padding: 8px;
-      font-size: 14px;
+      text-align: center;
+      padding: 6px;
+      font-size: small;
     }
-
     th {
-      background: #ffccd5;
-      color: #333;
+      background: #d6336c; /* Dark Pink Header */
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 2;
     }
-
     tr:nth-child(even) {
-      background-color: #f2f2f2;
+      background: #f9f9f9;
     }
-
     tr:hover {
-      background-color: #ffe5ec;
-      transition: 0.2s;
+      background: #ffe6f0; /* Light pink hover */
     }
-
-    .paid {
-      color: green;
-      font-weight: bold;
-    }
-
     .left {
-      color: #000000;
-    }
-
-    /* Responsive Table */
-    .table-container {
-      overflow-x: auto;
-      margin: 10px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    /* Fix for total row background */
-    .total-row th, 
-    .total-row td {
-      background: #ffccd5 !important;
+      color: red;
       font-weight: bold;
     }
-
-    @media (max-width: 600px) {
-      h2 {
-        font-size: 1.1rem;
-        padding: 10px;
-      }
-
-      th, td {
-        font-size: 12px;
-        padding: 6px;
-      }
-
-      .search-container input {
-        width: 100%;
-      }
+    .total-row {
+      background: #d6336c;
+      color: white;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
+  <h2><a href="index.html">💰 Deposited Monthly Amount</a></h2>
 
-  <h2><a href="index.html">Member Details</a></h2>
-
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search by name or status (Paid)">
-  </div>
+  <!-- Search Box -->
+  <input type="text" id="searchBox" placeholder="Search Member Name...">
 
   <div class="table-container">
-    <table id="mytable" class="tbl">
+    <table id="myTable">
       <tr>
         <th>S.N</th>
-    <th>Member Name</th>
-    <th>Amount</th>
-    <th>Interest Rate</th>
-    <th>Interest</th>
-    <th>Issue Date</th>
+        <th>Member Name</th>
+        <th>10 December 2024</th>
+        <th>10 January 2025</th>
+        <th>10 February 2025</th>
+        <th>10 March 2025</th>
+        <th>10 April 2025</th>
+        <th>10 May 2025</th>
+        <th>10 June 2025</th>
+        <th>10 July 2025</th>
+        <th>10 August 2025</th>
+        
       </tr>
-
+      <!-- Example Row -->
       <tr>
         <td>1.</td>
-        <td>Anuj Lodhi</td>
-    <td>50,000/-</td>
-    <td>1%</td>
-    <td>500</td>
-    <td>10 December 2024</td>
+        <td>Mr. Anuj Lodhi</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
       </tr>
       <tr>
         <td>2.</td>
-        <td>Raja Prajapati</td>
-    <td>50,000/-</td>
-    <td>1%</td>
-    <td>500</td>
-    <td>10 January 2025</td>
-      </tr>
+        <td>Ms. Aasani Kumari</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>      </tr>
       <tr>
         <td>3.</td>
-        <td>Shiv Prakash</td>
-    <td>50,000/-</td>
-    <td>1%</td>
-    <td>500</td>
-    <td>10 February 2025</td>
-      </tr>
+        <td>Mr. Raj Bahadur</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>      </tr>
       <tr>
         <td>4.</td>
-        <td>Subham Kumar</td>
-    <td>50,000/-</td>
-    <td>1%</td>
-    <td>500</td>
-    <td>10 March 2025</td>
-      </tr>
+        <td>Ms. Vijay Laxmi</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>      </tr>
       <tr>
         <td>5.</td>
-        <td>Annu Kumari</td>
-    <td>50,000/-</td>
-    <td>1%</td>
-    <td>500</td>
-    <td>10 April 2025</td>
-      </tr>
-      <tr class="left">
+        <td>Mr. Shiv Prakash</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>      </tr>
+      <tr style="color:red;">
         <td>6.</td>
-        <td>Aniket kumar</td>
-    <td>46,000/-</td>
-    <td>1%</td>
-    <td>460</td>
-    <td>10 May 2025</td>
+        <td>Ms. Sarita Rajpoot</td>
+        <td>2000</td><td>2000</td><td>2000</td><td>2000</td><td>2000</td>
+        <td class="left">Left</td>
+        <td class="left">Left</td>
+        <td class="left">Left</td>
+        <td class="left">Left</td>
       </tr>
       <tr>
-        <td>6.</td>
-    <td>Mukesh kumar</td>
-    <td>7,000/-<span style="color:green;"><b>Interest Amount</b></span></td>
-    <td>1%</td>
-    <td>70</td>
-    <td>10 May 2025</td>
-      </tr>
-      <tr>
+        <td>7.</td>
+        <td>Mr. Naval Kishor</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>      </tr>
+        <tr>
         <td>8.</td>
-        <td>Tileshar kumar</td>
-    <td>46,000/-</td>
-    <td>1%</td>
-    <td>460</td>
-    <td>10 June 2025</td>
-      </tr>
+        <td>Mr. Surendra Kumar</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>      </tr>
       <tr>
         <td>9.</td>
-        <td>Kittu Kumari</td>
-    <td>46,000/-</td>
-    <td>1%</td>
-    <td>460</td>
-    <td>10 July 2025</td>
+        <td>Mr. Mukesh Kumar</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>
+        <td>2000</td>    
       </tr>
-      <tr>
-        <td>9.</td>
-    <td>-</td>
-    <td>46,000/-</td>
-    <td>1%</td>
-    <td>460</td>
-    <td>10 August 2025</td
-      </tr>
-      <tr>
-        <td></td>
-    <td><b>Total</b></td>
-    <td><b>4,41,000/-</b></td>
-    <td><b></b></td>
-    <td><b></b></td>
-    <td></td>
-      </tr>
-      
+                  
     </table>
   </div>
 
   <script>
-    document.getElementById("searchInput").addEventListener("keyup", function() {
+    // Search Function
+    document.getElementById("searchBox").addEventListener("keyup", function() {
       let filter = this.value.toLowerCase();
-      let rows = document.querySelectorAll("#mytable tr");
+      let rows = document.querySelectorAll("#myTable tr");
 
       rows.forEach((row, index) => {
-        if (index === 0) return; // skip header
-        let text = row.textContent.toLowerCase();
-        row.style.display = text.includes(filter) ? "" : "none";
+        if (index === 0 || row.classList.contains("total-row")) return; // skip header & total row
+        let memberName = row.cells[1].textContent.toLowerCase();
+        row.style.display = memberName.includes(filter) ? "" : "none";
       });
     });
   </script>
-
 </body>
-</html>
-
-
-
-
+  </html>
+  
