@@ -3,300 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interest</title>
+  <title>Terms and Conditions</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: white; /* White background */
-      margin: 20px;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
     }
-    h2 {
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #ff5f6d, #ff4b2b);
+      color: white;
       text-align: center;
-      color: #d6336c; /* Dark Pink Title */
+      padding: 30px 20px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
     }
-    a {
-      text-decoration: none;
-      color: #d6336c;
+
+    .header h1 {
+      margin: 0;
+      font-size: 26px;
     }
-    /* Search Box */
-    #searchBox {
-      margin: 15px auto;
-      display: block;
-      width: 60%;
-      max-width: 400px;
-      padding: 10px;
-      border: 2px solid #d6336c;
-      border-radius: 8px;
+
+    .header p {
+      margin: 5px 0 0;
       font-size: 16px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      opacity: 0.9;
     }
-    /* Table */
-    .table-container {
-      overflow-x: auto; /* Mobile scroll */
-      margin-top: 15px;
+
+    /* Cards */
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 15px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
+
+    .card {
       background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    th, td {
-      border: 1px solid #ddd;
-      text-align: center;
-      padding: 6px;
-      font-size: small;
+
+    .card h2 {
+      font-size: 18px;
+      color: #ff2e63;
+      margin-bottom: 8px;
     }
-    th {
-      background: #d6336c; /* Dark Pink Header */
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 2;
+
+    .card p {
+      font-size: 16px;
+      color: #333;
+      margin: 0;
+      line-height: 1.5;
     }
-    tr:nth-child(even) {
-      background: #f9f9f9;
-    }
-    tr:hover {
-      background: #ffe6f0; /* Light pink hover */
-    }
-    .left {
-      color: red;
-      font-weight: bold;
-    }
-    .total-row {
-      background: #d6336c;
-      color: white;
-      font-weight: bold;
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 22px;
+      }
+      .header p {
+        font-size: 14px;
+      }
+      .card p {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
-  <h2><a href="index.html">💰 interest Details</a></h2>
 
-  <!-- Search Box -->
-  <input type="text" id="searchBox" placeholder="Search Member Name...">
-
-  <div class="table-container">
-    <table id="myTable">
-                        <tr>
-          <th>S.N</th>
-          <th>Member Name</th>
-          <th> 10 January 2025</th>
-          <th> 10 February</th>
-          <th> 10 March</th>
-          <th> 10 April</th>
-          <th> 10 May</th>
-          <th> 10 June</th>
-          <th> 10 July</th>
-          <th> 10 August</th>
-          <th> 10 September</th>
-          <th> 10 October</th>
-          <th> 10 November</th>
-          <th> 10 December</th>
-          <th><b> Grand Total</b></th>
-        </tr>
-      
-        <tr>
-          <td>1.</td>
-          <td>Anuj Lodhi</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><b>4000</b></td>
-        </tr>
-
-        <tr>
-          <td>2.</td>
-          <td>Raja Prajapati</b></td>
-          <td>-</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><b>3500</b></td>
-        </tr>
-
-        <tr>
-          <td>3.</td>
-          <td>Shiv Prakash</td>
-          <td>-</td>
-          <td>-</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><b>3000</b></td>
-        </tr>
-
-        <tr>
-          <td>4.</td>
-          <td>Subham Kumar</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><b>2500</b></td>
-        </tr>
-
-        <tr>
-          <td>5.</td>
-          <td>Annu Kumari</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><b>2000</b></td>
-        </tr>
-
-        <tr>
-          <td>6.</td>
-          <td>Aniket kumar</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>460</td>
-          <td>460</td>
-          <td>460</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><b>1380</b></td>
-        </tr>
-
-        <tr>
-          <td>6.</td>
-          <td>Mukesh kumar</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>70</td>
-          <td>70</td>
-          <td>70</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-             <td><b>210</b></td>
-        </tr>
-
-        <tr>
-          <td>7.</td>
-          <td>Tileshar kumar</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>460</td>
-          <td>460</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><b>920</b></td>
-        </tr>
-
-        <tr>
-          <td>8.</td>
-          <td>Kittu Kumari</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>460</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><b>460</b></td>
-        </tr>
-
-        <tr>
-          <td></td>
-          <td><b>Total Interest</b></td>
-          <td><b>500</b></td>
-          <td><b>1000</b></td>
-          <td><b>1500</b></td>
-          <td><b>2000</b></td>
-          <td><b>2500</b></td>
-          <td><b>3030</b></td>
-          <td><b>3490</b></td>
-          <td><b>3950</b></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><b>17970</b></td>
-        </tr>                  
-    </table>
+  <div class="header">
+    <h1>Terms and Conditions</h1>
+    <p>नियम एवं शर्तें</p>
   </div>
 
-  <script>
-    // Search Function
-    document.getElementById("searchBox").addEventListener("keyup", function() {
-      let filter = this.value.toLowerCase();
-      let rows = document.querySelectorAll("#myTable tr");
+  <div class="container">
+    <div class="card">
+      <h2>Rule 1</h2>
+      <p>सभी सदस्यों को प्रत्येक महीने की 10 तारीख तक अपनी रकम एवं अन्य देय राशि जमा करवाना अनिवार्य होगा।</p>
+    </div>
 
-      rows.forEach((row, index) => {
-        if (index === 0 || row.classList.contains("total-row")) return; // skip header & total row
-        let memberName = row.cells[1].textContent.toLowerCase();
-        row.style.display = memberName.includes(filter) ? "" : "none";
-      });
-    });
-  </script>
+    <div class="card">
+      <h2>Rule 2</h2>
+      <p>यदि किसी सदस्य की रकम या ब्याज की राशि 10 तारीख के बाद जमा होती है, तो ₹10 प्रति दिन के हिसाब से अतिरिक्त शुल्क देय होगा।</p>
+    </div>
+
+    <div class="card">
+      <h2>Rule 3</h2>
+      <p>किसी भी सदस्य को एक नाम पर ₹50,000 से अधिक की राशि प्रदान नहीं की जाएगी।</p>
+    </div>
+
+    <div class="card">
+      <h2>Rule 4</h2>
+      <p>रकम पर 1% मासिक ब्याज लागू होगा।</p>
+    </div>
+
+    <div class="card">
+      <h2>Rule 5</h2>
+      <p>सभी सदस्यों की जमा राशि प्राप्त होने के बाद, प्रत्येक माह की 15 तारीख को धनराशि दी जाएगी।</p>
+    </div>
+
+    <div class="card">
+      <h2>Rule 6</h2>
+      <p>लाभ और हानि की समान जिम्मेदारी होगी, और सभी साझेदार बराबरी के हकदार होंगे।</p>
+    </div>
+
+    <div class="card">
+      <h2>Rule 7</h2>
+      <p>परिस्थितियों के अनुसार नियम एवं शर्तों में परिवर्तन किया जा सकता है।</p>
+    </div>
+  </div>
+
 </body>
-  </html>
-  
-
-
-
+</html>
