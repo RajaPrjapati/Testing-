@@ -1,312 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dark Pink Calculator (Equal Buttons)</title>
-  <style>
-    :root{
-      --pink:#d6336c;
-      --pink-acc:#ff6b9b;
-      --pink-soft:#ffc2d1;
-      --bg:#f8f9fa;
-      --white:#fff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --dark-pink: #d6336c;
+  --light: #fff;
+  --dark: #222;
+  --gray: #f8f9fa;
+}
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:var(--bg);
-      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
+/* Reset */
+* {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+body { background: var(--gray); padding:15px; }
 
-    .calculator{
-      width:min(92vw, 380px);
-      background:var(--pink);
-      padding:18px;
-      border-radius:18px;
-      box-shadow:0 8px 24px rgba(0,0,0,.22);
-    }
+/* Dashboard Container */
+.dashboard {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr; /* Mobile default */
+}
 
-    .display{
-      width:100%;
-      height:72px;
-      border:none;
-      border-radius:12px;
-      background:var(--white);
-      font-size:clamp(24px, 6vw, 34px);
-      text-align:right;
-      padding:14px;
-      margin-bottom:14px;
-      outline:none;
-    }
+/* Card */
+.card {
+  background: var(--light);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display:flex;
+  align-items:center;
+  gap: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.card i {
+  font-size: 32px;
+  color: var(--dark-pink);
+  min-width: 40px;
+  text-align:center;
+}
+.card .info {
+  display:flex;
+  flex-direction:column;
+  width:100%;
+}
+.card h3 {
+  font-size: 16px;
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+.card p {
+  font-size: 20px;
+  font-weight:bold;
+  color: var(--dark-pink);
+}
+.card small {
+  color: #666;
+  font-size: 12px;
+}
 
-    .buttons{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:10px;
-    }
+/* Links for numbers */
+.amount-link {
+  color: var(--dark-pink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.amount-link:hover {
+  color: #b02155;
+  text-decoration: underline;
+}
 
-    .btn{
-      border:none;
-      border-radius:12px;
-      background:var(--white);
-      font-size:clamp(16px, 4.5vw, 22px);
-      font-weight:600;
-      cursor:pointer;
-      transition:transform .06s ease, filter .15s ease;
-      /* Make all buttons equal: squares that scale responsively */
-      aspect-ratio: 1 / 1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      user-select:none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .btn:active{ transform:scale(.98) }
-    .op{ background:#ffe6ed }         /* light op bg */
-    .accent{ background:var(--pink-acc); color:#fff } /* = button */
-    .clear{ background:var(--pink-soft) }
+/* Interest card special layout */
+.interest-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.interest-info .left {
+  display: flex;
+  flex-direction: column;
+}
+.interest-info .button {
+  display: inline-block;
+  background: var(--dark-pink);
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.interest-info .button:hover {
+  background: #b02155;
+  transform: translateY(-2px);
+}
 
-    /* Better touch targets on very small phones */
-    @media (max-width:360px){
-      .display{ height:64px }
-    }
-  </style>
+/* Highlight Card (Top Info) */
+.top-card {
+  background: linear-gradient(135deg, var(--dark-pink), #ff6b9d);
+  color: var(--light);
+  text-align:center;
+  padding: 20px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight:bold;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  grid-column: 1 / -1; /* always full width */
+}
+
+/* Button text control */
+.text-mobile { display: none; }
+.text-desktop { display: inline; }
+
+@media (max-width: 768px) {
+  .text-desktop { display: none; }
+  .text-mobile { display: inline; }
+}
+
+/* Responsive Grid */
+@media (min-width: 769px) {
+  .dashboard {
+    grid-template-columns: 1fr 1fr; /* 2 cards per row */
+  }
+}
+</style>
 </head>
 <body>
-  <div class="calculator" role="application" aria-label="Calculator">
-    <input id="display" class="display" type="text" value="" placeholder="0" aria-label="Calculator display" inputmode="numeric" />
 
-    <div class="buttons" aria-label="Calculator keypad">
-      <!-- Row 1 -->
-      <button class="btn clear" onclick="clearDisplay()" aria-label="Clear">C</button>
-      <button class="btn op" onclick="backspace()" aria-label="Backspace">⌫</button>
-      <button class="btn op" onclick="percent()" aria-label="Percent">%</button>
-      <button class="btn op" onclick="appendValue('/')" aria-label="Divide">÷</button>
+<div class="dashboard">
 
-      <!-- Row 2 -->
-      <button class="btn" onclick="appendValue('7')">7</button>
-      <button class="btn" onclick="appendValue('8')">8</button>
-      <button class="btn" onclick="appendValue('9')">9</button>
-      <button class="btn op" onclick="appendValue('*')" aria-label="Multiply">×</button>
+  <!-- Top Summary -->
+  <div class="top-card">
+    Committee <br>
+    <small>10 Dec 2024 - 10 Dec 2026</small><br>
+    Total summary till <b>10 August 2025</b>
+  </div>
 
-      <!-- Row 3 -->
-      <button class="btn" onclick="appendValue('4')">4</button>
-      <button class="btn" onclick="appendValue('5')">5</button>
-      <button class="btn" onclick="appendValue('6')">6</button>
-      <button class="btn op" onclick="appendValue('-')" aria-label="Minus">−</button>
-
-      <!-- Row 4 -->
-      <button class="btn" onclick="appendValue('1')">1</button>
-      <button class="btn" onclick="appendValue('2')">2</button>
-      <button class="btn" onclick="appendValue('3')">3</button>
-      <button class="btn op" onclick="appendValue('+')" aria-label="Plus">+</button>
-
-      <!-- Row 5 -->
-      <button class="btn" onclick="appendValue('0')">0</button>
-      <button class="btn" onclick="appendValue('00')">00</button>
-      <button class="btn" onclick="appendValue('.')">.</button>
-      <button class="btn accent" onclick="calculate()" aria-label="Equals">=</button>
+  <!-- Members -->
+  <div class="card">
+    <i class="fa-solid fa-users"></i>
+    <div class="info">
+      <h3>Committee Members</h3>
+      <p><a href="MemberDetails.html" class="amount-link">23</a> 
+        <small style="color:red;">(2 Left - Sarita/Sonu 10 May 2025)</small>
+      </p>
     </div>
   </div>
 
-  <script>
-    const display = document.getElementById('display');
+  <!-- Deposits -->
+  <div class="card">
+    <i class="fa-solid fa-sack-dollar"></i>
+    <div class="info">
+      <h3>Members Deposited</h3>
+      <p><a href="Month2025.html" class="amount-link">4,41,000/-</a></p>
+    </div>
+  </div>
 
-    function appendValue(v){
-      // Prevent two operators in a row (simple guard)
-      const ops = '+-*/';
-      const last = display.value.slice(-1);
-      if(ops.includes(v) && ops.includes(last)) {
-        display.value = display.value.slice(0,-1) + v;
-      } else {
-        display.value += v;
-      }
-    }
+  <!-- Interest -->
+  <div class="card">
+    <i class="fa-solid fa-percent"></i>
+    <div class="interest-info">
+      <div class="left">
+        <h3>Interest Amount</h3>
+        <p><a href="Interest.html" class="amount-link">17,970/-</a></p>
+      </div>
+      <a href="Interest Hisab.html" class="button">
+        <span class="text-desktop">Interest Calculation</span>
+        <span class="text-mobile">Interest</span>
+      </a>
+    </div>
+  </div>
 
-    function clearDisplay(){ display.value = '' }
+  <!-- Balance -->
+  <div class="card">
+    <i class="fa-solid fa-wallet"></i>
+    <div class="info">
+      <h3>Total Balance</h3>
+      <p><a href="#" class="amount-link">4,58,970/-</a></p>
+    </div>
+  </div>
 
-    function backspace(){ display.value = display.value.slice(0,-1) }
+</div>
 
-    function percent(){
-      if(!display.value) return;
-      // Convert current number (entire expression if single number) to percent
-      try{
-        // If it's a pure number, just divide by 100
-        if(/^\s*-?\d+(\.\d+)?\s*$/.test(display.value)){
-          display.value = String(parseFloat(display.value)/100);
-          return;
-        }
-        // Otherwise, try to apply % to the last number chunk
-        const m = display.value.match(/(.*?)(-?\d+(\.\d+)?)(\s*)$/);
-        if(m){
-          const head = m[1];
-          const num = parseFloat(m[2]);
-          display.value = head + (num/100);
-        }
-      }catch(e){}
-    }
-
-    function calculate(){
-      if(!display.value) return;
-      try{
-        // Replace × ÷ if they ever appear
-        const expr = display.value.replace(/×/g,'*').replace(/÷/g,'/');
-        // Evaluate
-        const result = Function('"use strict";return ('+expr+')')();
-        display.value = (result === undefined || isNaN(result)) ? 'Error' : result;
-      }catch(e){
-        display.value = 'Error';
-      }
-    }
-
-    // Keyboard support
-    document.addEventListener('keydown', (e)=>{
-      const key = e.key;
-      if(/[0-9.]/.test(key)) appendValue(key);
-      else if(['+','-','*','/'].includes(key)) appendValue(key);
-      else if(key === 'Enter' || key === '=') calculate();
-      else if(key === 'Backspace') backspace();
-      else if(key.toLowerCase() === 'c') clearDisplay();
-    });
-  </script>
 </body>
 </html>
 
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Interest Calculator</title>
-  <style>
-    :root {
-      --pink: #d6336c;
-      --pink-dark: #a61e4d;
-      --pink-light: #ff6b9b;
-      --white: #fff;
-      --bg: #f8f9fa;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, Arial, sans-serif;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    .calculator {
-      background: var(--pink);
-      padding: 24px;
-      border-radius: 18px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      width: min(92vw, 420px);
-      color: var(--white);
-    }
-
-    .calculator h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      font-size: 1rem;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-    }
-
-    input:focus {
-      box-shadow: 0 0 0 3px var(--pink-light);
-    }
-
-    .btn {
-      width: 100%;
-      padding: 14px;
-      background: var(--pink-light);
-      color: var(--white);
-      border: none;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      background: var(--pink-dark);
-    }
-
-    .result {
-      margin-top: 20px;
-      background: var(--white);
-      color: var(--pink);
-      padding: 16px;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <div class="calculator">
-    <h2>Interest Calculator</h2>
-
-    <div class="form-group">
-      <label for="amount">Enter Amount (₹)</label>
-      <input type="number" id="amount" placeholder="Enter amount">
-    </div>
-
-    <div class="form-group">
-      <label for="percent">Enter Percentage (%)</label>
-      <input type="number" id="percent" placeholder="Enter percentage">
-    </div>
-
-    <button class="btn" onclick="calculate()">Calculate</button>
-
-    <div id="result" class="result">Result will appear here</div>
-  </div>
-
-  <script>
-    function calculate() {
-      const amount = parseFloat(document.getElementById("amount").value);
-      const percent = parseFloat(document.getElementById("percent").value);
-      const resultBox = document.getElementById("result");
-
-      if (isNaN(amount) || isNaN(percent)) {
-        resultBox.innerText = "⚠️ Please enter valid numbers";
-        return;
-      }
-
-      const result = (amount * percent) / 100;
-      resultBox.innerText = `Result: ₹ ${result.toFixed(2)}`;
-    }
-  </script>
-</body>
-</html>
+        
