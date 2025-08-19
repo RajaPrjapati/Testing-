@@ -131,6 +131,51 @@ body { background: var(--gray); padding:15px; }
     grid-template-columns: 1fr 1fr; /* 2 cards per row */
   }
 }
+
+  /* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+}
+
+/* Dropdown button (arrow icon) */
+.dropbtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show dropdown on button click */
+.dropdown.show .dropdown-content {
+  display: block;
+  }
 </style>
 </head>
 <body>
@@ -181,18 +226,45 @@ body { background: var(--gray); padding:15px; }
 
   <!-- Balance -->
   <div class="card">
-    <i class="fa-solid fa-wallet"></i>
-    <div class="info">
-      <h3>Total Balance</h3>
-      <p><a href="#" class="amount-link">4,58,970/-</a></p>
+  <div class="card-icon">
+    <i class="fas fa-wallet"></i>
+  </div>
+  <div class="card-content">
+    <h3>Total Balance</h3>
+    <p>4,58,970/-</p>
+  </div>
+
+  <!-- Dropdown Trigger (Arrow) -->
+  <div class="dropdown">
+    <button class="dropbtn"><i class="fas fa-chevron-down"></i></button>
+    <div class="dropdown-content">
+      <a href="#">Calculator</a>
+      <a href="#">Interest Calculation</a>
     </div>
+  </div>
   </div>
 
 </div>
 
 </body>
+
+  <script>
+  // Toggle dropdown on click
+  document.querySelectorAll('.dropbtn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      this.parentElement.classList.toggle('show');
+    });
+  });
+
+  // Close dropdown if clicked outside
+  window.addEventListener('click', function() {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+  });
+  </script>
 </html>
 
 
 
         
+
