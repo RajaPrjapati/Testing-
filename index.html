@@ -1,123 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms and Conditions</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark Pink Calculator (Equal Buttons)</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 0;
+    :root{
+      --pink:#d6336c;
+      --pink-acc:#ff6b9b;
+      --pink-soft:#ffc2d1;
+      --bg:#f8f9fa;
+      --white:#fff;
     }
 
-    /* Header */
-    .header {
-      background: linear-gradient(135deg, #ff5f6d, #ff4b2b);
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-      border-bottom-left-radius: 30px;
-      border-bottom-right-radius: 30px;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--bg);
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
-    .header h1 {
-      margin: 0;
-      font-size: 26px;
+    .calculator{
+      width:min(92vw, 380px);
+      background:var(--pink);
+      padding:18px;
+      border-radius:18px;
+      box-shadow:0 8px 24px rgba(0,0,0,.22);
     }
 
-    .header p {
-      margin: 5px 0 0;
-      font-size: 16px;
-      opacity: 0.9;
+    .display{
+      width:100%;
+      height:72px;
+      border:none;
+      border-radius:12px;
+      background:var(--white);
+      font-size:clamp(24px, 6vw, 34px);
+      text-align:right;
+      padding:14px;
+      margin-bottom:14px;
+      outline:none;
     }
 
-    /* Cards */
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 15px;
+    .buttons{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:10px;
     }
 
-    .card {
-      background: white;
-      padding: 15px 20px;
-      margin-bottom: 15px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    .btn{
+      border:none;
+      border-radius:12px;
+      background:var(--white);
+      font-size:clamp(16px, 4.5vw, 22px);
+      font-weight:600;
+      cursor:pointer;
+      transition:transform .06s ease, filter .15s ease;
+      /* Make all buttons equal: squares that scale responsively */
+      aspect-ratio: 1 / 1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
+    .btn:active{ transform:scale(.98) }
+    .op{ background:#ffe6ed }         /* light op bg */
+    .accent{ background:var(--pink-acc); color:#fff } /* = button */
+    .clear{ background:var(--pink-soft) }
 
-    .card h2 {
-      font-size: 18px;
-      color: #ff2e63;
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      font-size: 16px;
-      color: #333;
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .header h1 {
-        font-size: 22px;
-      }
-      .header p {
-        font-size: 14px;
-      }
-      .card p {
-        font-size: 14px;
-      }
+    /* Better touch targets on very small phones */
+    @media (max-width:360px){
+      .display{ height:64px }
     }
   </style>
 </head>
 <body>
+  <div class="calculator" role="application" aria-label="Calculator">
+    <input id="display" class="display" type="text" value="" placeholder="0" aria-label="Calculator display" inputmode="numeric" />
 
-  <div class="header">
-    <h1>Terms and Conditions</h1>
-    <p>नियम एवं शर्तें</p>
-  </div>
+    <div class="buttons" aria-label="Calculator keypad">
+      <!-- Row 1 -->
+      <button class="btn clear" onclick="clearDisplay()" aria-label="Clear">C</button>
+      <button class="btn op" onclick="backspace()" aria-label="Backspace">⌫</button>
+      <button class="btn op" onclick="percent()" aria-label="Percent">%</button>
+      <button class="btn op" onclick="appendValue('/')" aria-label="Divide">÷</button>
 
-  <div class="container">
-    <div class="card">
-      <h2>Rule 1</h2>
-      <p>सभी सदस्यों को प्रत्येक महीने की 10 तारीख तक अपनी रकम एवं अन्य देय राशि जमा करवाना अनिवार्य होगा।</p>
-    </div>
+      <!-- Row 2 -->
+      <button class="btn" onclick="appendValue('7')">7</button>
+      <button class="btn" onclick="appendValue('8')">8</button>
+      <button class="btn" onclick="appendValue('9')">9</button>
+      <button class="btn op" onclick="appendValue('*')" aria-label="Multiply">×</button>
 
-    <div class="card">
-      <h2>Rule 2</h2>
-      <p>यदि किसी सदस्य की रकम या ब्याज की राशि 10 तारीख के बाद जमा होती है, तो ₹10 प्रति दिन के हिसाब से अतिरिक्त शुल्क देय होगा।</p>
-    </div>
+      <!-- Row 3 -->
+      <button class="btn" onclick="appendValue('4')">4</button>
+      <button class="btn" onclick="appendValue('5')">5</button>
+      <button class="btn" onclick="appendValue('6')">6</button>
+      <button class="btn op" onclick="appendValue('-')" aria-label="Minus">−</button>
 
-    <div class="card">
-      <h2>Rule 3</h2>
-      <p>किसी भी सदस्य को एक नाम पर ₹50,000 से अधिक की राशि प्रदान नहीं की जाएगी।</p>
-    </div>
+      <!-- Row 4 -->
+      <button class="btn" onclick="appendValue('1')">1</button>
+      <button class="btn" onclick="appendValue('2')">2</button>
+      <button class="btn" onclick="appendValue('3')">3</button>
+      <button class="btn op" onclick="appendValue('+')" aria-label="Plus">+</button>
 
-    <div class="card">
-      <h2>Rule 4</h2>
-      <p>रकम पर 1% मासिक ब्याज लागू होगा।</p>
-    </div>
-
-    <div class="card">
-      <h2>Rule 5</h2>
-      <p>सभी सदस्यों की जमा राशि प्राप्त होने के बाद, प्रत्येक माह की 15 तारीख को धनराशि दी जाएगी।</p>
-    </div>
-
-    <div class="card">
-      <h2>Rule 6</h2>
-      <p>लाभ और हानि की समान जिम्मेदारी होगी, और सभी साझेदार बराबरी के हकदार होंगे।</p>
-    </div>
-
-    <div class="card">
-      <h2>Rule 7</h2>
-      <p>परिस्थितियों के अनुसार नियम एवं शर्तों में परिवर्तन किया जा सकता है।</p>
+      <!-- Row 5 -->
+      <button class="btn" onclick="appendValue('0')">0</button>
+      <button class="btn" onclick="appendValue('00')">00</button>
+      <button class="btn" onclick="appendValue('.')">.</button>
+      <button class="btn accent" onclick="calculate()" aria-label="Equals">=</button>
     </div>
   </div>
 
+  <script>
+    const display = document.getElementById('display');
+
+    function appendValue(v){
+      // Prevent two operators in a row (simple guard)
+      const ops = '+-*/';
+      const last = display.value.slice(-1);
+      if(ops.includes(v) && ops.includes(last)) {
+        display.value = display.value.slice(0,-1) + v;
+      } else {
+        display.value += v;
+      }
+    }
+
+    function clearDisplay(){ display.value = '' }
+
+    function backspace(){ display.value = display.value.slice(0,-1) }
+
+    function percent(){
+      if(!display.value) return;
+      // Convert current number (entire expression if single number) to percent
+      try{
+        // If it's a pure number, just divide by 100
+        if(/^\s*-?\d+(\.\d+)?\s*$/.test(display.value)){
+          display.value = String(parseFloat(display.value)/100);
+          return;
+        }
+        // Otherwise, try to apply % to the last number chunk
+        const m = display.value.match(/(.*?)(-?\d+(\.\d+)?)(\s*)$/);
+        if(m){
+          const head = m[1];
+          const num = parseFloat(m[2]);
+          display.value = head + (num/100);
+        }
+      }catch(e){}
+    }
+
+    function calculate(){
+      if(!display.value) return;
+      try{
+        // Replace × ÷ if they ever appear
+        const expr = display.value.replace(/×/g,'*').replace(/÷/g,'/');
+        // Evaluate
+        const result = Function('"use strict";return ('+expr+')')();
+        display.value = (result === undefined || isNaN(result)) ? 'Error' : result;
+      }catch(e){
+        display.value = 'Error';
+      }
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', (e)=>{
+      const key = e.key;
+      if(/[0-9.]/.test(key)) appendValue(key);
+      else if(['+','-','*','/'].includes(key)) appendValue(key);
+      else if(key === 'Enter' || key === '=') calculate();
+      else if(key === 'Backspace') backspace();
+      else if(key.toLowerCase() === 'c') clearDisplay();
+    });
+  </script>
 </body>
 </html>
