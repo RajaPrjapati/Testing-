@@ -6,6 +6,7 @@
   <title>Deposited Monthly Amount</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,6 +16,35 @@
     h2 {
       text-align: center;
       color: #d6336c;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .search-box {
+      padding: 10px;
+      border: 2px solid #d6336c;
+      border-radius: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    .pdf-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #d6336c;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .pdf-btn i {
+      font-size: 18px;
     }
     table {
       width: 100%;
@@ -35,21 +65,18 @@
       background: #d6336c;
       color: #fff;
     }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #d6336c;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
   </style>
 </head>
 <body>
 
   <h2>Deposited Monthly Amount - Year 2025</h2>
+
+  <div class="top-bar">
+    <input type="text" class="search-box" placeholder="Search Member Name...">
+    <button id="downloadBtn" class="pdf-btn">
+      <i class="fa-solid fa-download"></i> PDF
+    </button>
+  </div>
 
   <table id="myTable">
     <thead>
@@ -62,7 +89,7 @@
         <th>May</th>
         <th>Jun</th>
         <th>Jul</th>
-        <th>10 Aug</th> <!-- last month will be used -->
+        <th>10 Aug</th>
       </tr>
     </thead>
     <tbody>
@@ -83,8 +110,6 @@
       </tr>
     </tbody>
   </table>
-
-  <button id="downloadBtn">Download PDF</button>
 
   <script>
     document.getElementById("downloadBtn").addEventListener("click", () => {
