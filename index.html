@@ -1,283 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Testing</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-  --dark-pink: #d6336c;
-  --light: #fff;
-  --dark: #222;
-  --gray: #f8f9fa;
-}
-
-/* Reset */
-* {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
-body { background: var(--gray); padding:15px; }
-
-/* Dashboard Container */
-.dashboard {
-  display: grid;
-  gap: 15px;
-  grid-template-columns: 1fr; /* Mobile default */
-}
-
-/* Card */
-.card {
-  background: var(--light);
-  padding: 18px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  display:flex;
-  align-items:center;
-  gap: 15px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.card i {
-  font-size: 32px;
-  color: var(--dark-pink);
-  min-width: 40px;
-  text-align:center;
-}
-.card .info {
-  display:flex;
-  flex-direction:column;
-  width:100%;
-}
-.card h3 {
-  font-size: 16px;
-  color: var(--dark);
-  margin-bottom: 5px;
-}
-.card p {
-  font-size: 20px;
-  font-weight:bold;
-  color: var(--dark-pink);
-}
-.card small {
-  color: #666;
-  font-size: 12px;
-}
-
-/* Links for numbers */
-.amount-link {
-  color: var(--dark-pink);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.amount-link:hover {
-  color: #b02155;
-  text-decoration: underline;
-}
-
-/* Interest card special layout */
-.interest-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-.interest-info .left {
-  display: flex;
-  flex-direction: column;
-}
-.interest-info .button {
-  display: inline-block;
-  background: var(--dark-pink);
-  color: #fff;
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: bold;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.interest-info .button:hover {
-  background: #b02155;
-  transform: translateY(-2px);
-}
-
-/* Highlight Card (Top Info) */
-.top-card {
-  background: linear-gradient(135deg, var(--dark-pink), #ff6b9d);
-  color: var(--light);
-  text-align:center;
-  padding: 20px;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight:bold;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-  grid-column: 1 / -1; /* always full width */
-}
-
-/* Button text control */
-.text-mobile { display: none; }
-.text-desktop { display: inline; }
-
-@media (max-width: 768px) {
-  .text-desktop { display: none; }
-  .text-mobile { display: inline; }
-}
-
-/* Responsive Grid */
-@media (min-width: 769px) {
-  .dashboard {
-    grid-template-columns: 1fr 1fr; /* 2 cards per row */
-  }
-}
-
-  /* Dropdown container */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  margin-left: auto;
-}
-
-  /* Make the arrow smaller */
-.dropbtn i {
-  font-size: 12px;   /* or 10px if you want even smaller */
-}
-  
-/* Dropdown button (arrow icon) */
-.dropbtn {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 5px;
-}
-
-/* Dropdown content */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 61px;
-  background-color: white;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  border-radius: 8px;
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 8px 12px;
-  text-decoration: none;
-  display: block;
-  font-size: 14px;
-}
-
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-/* Show dropdown on button click */
-.dropdown.show .dropdown-content {
-  display: block;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposited Monthly Amount</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #d6336c;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #d6336c;
+      color: #fff;
+    }
+    .total-row {
+      font-weight: bold;
+      background: #d6336c;
+      color: #fff;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #d6336c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="dashboard">
+  <h2>Deposited Monthly Amount - Year 2025</h2>
 
-  <!-- Top Summary -->
-  <div class="top-card">
-    Committee <br>
-    <small>10 Dec 2024 - 10 Dec 2026</small><br>
-    Total summary till <b>10 August 2025</b>
-  </div>
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th>Member</th>
+        <th>Jan</th>
+        <th>Feb</th>
+        <th>Mar</th>
+        <th>Apr</th>
+        <th>May</th>
+        <th>Jun</th>
+        <th>Jul</th>
+        <th>10 Aug</th> <!-- last month will be used -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ravi</td>
+        <td>2000</td><td>2000</td><td>2000</td><td>2000</td>
+        <td>2000</td><td>2000</td><td>2000</td><td>2000</td>
+      </tr>
+      <tr>
+        <td>Priya</td>
+        <td>1500</td><td>1500</td><td>1500</td><td>1500</td>
+        <td>1500</td><td>1500</td><td>1500</td><td>1500</td>
+      </tr>
+      <tr class="total-row">
+        <td>Total</td>
+        <td>3500</td><td>3500</td><td>3500</td><td>3500</td>
+        <td>3500</td><td>3500</td><td>3500</td><td>3500</td>
+      </tr>
+    </tbody>
+  </table>
 
-  <!-- Members -->
-  <div class="card">
-    <i class="fa-solid fa-users"></i>
-    <div class="info">
-      <h3>Committee Members</h3>
-      <p><a href="MemberDetails.html" class="amount-link">23</a> 
-        <small style="color:red;">(2 Left - Sarita/Sonu 10 May 2025)</small>
-      </p>
-    </div>
-  </div>
-
-  <!-- Deposits -->
-  <div class="card">
-    <i class="fa-solid fa-sack-dollar"></i>
-    <div class="info">
-      <h3>Members Deposited</h3>
-      <p><a href="Month2025.html" class="amount-link">4,41,000/-</a></p>
-    </div>
-  </div>
-
-  <!-- Interest -->
-  <div class="card">
-    <i class="fa-solid fa-percent"></i>
-    <div class="interest-info">
-      <div class="left">
-        <h3>Interest Amount</h3>
-        <p><a href="Interest.html" class="amount-link">17,970/-</a></p>
-      </div>
-      <a href="Interest Hisab.html" class="button">
-        <span class="text-desktop">Interest Calculation</span>
-        <span class="text-mobile">Interest</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Balance -->
-  <div class="card">
-  <div class="card-icon">
-    <i class="fas fa-wallet"></i>
-  </div>
-  <div class="card-content">
-    <h3>Total Balance</h3>
-    <p>4,58,970/-</p>
-  </div>
-
-  <!-- Dropdown Trigger (Arrow) -->
-  <div class="dropdown">
-    <button class="dropbtn"><i class="fas fa-chevron-down"></i></button>
-    <div class="dropdown-content">
-      <a href="#">Calculator</a>
-      <a href="#">Interest Calculation</a>
-    </div>
-  </div>
-  </div>
-
-</div>
-
-</body>
+  <button id="downloadBtn">Download PDF</button>
 
   <script>
-  // Toggle dropdown on click
-  document.querySelectorAll('.dropbtn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      this.parentElement.classList.toggle('show');
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: "landscape" });
+
+      // Header
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.text("Deposited Monthly Amount - Year 2025", 148, 15, { align: "center" });
+
+      // Date & time
+      const now = new Date();
+      const dateStr = now.toLocaleDateString();
+      const timeStr = now.toLocaleTimeString();
+      doc.setFontSize(10);
+      doc.setFont("helvetica", "normal");
+      doc.text(`Generated on: ${dateStr} ${timeStr}`, 148, 22, { align: "center" });
+
+      // Table
+      doc.autoTable({
+        html: "#myTable",
+        startY: 30,
+        theme: "grid",
+        styles: { fontSize: 8, cellPadding: 3 },
+        headStyles: { fillColor: [214, 51, 108], textColor: 255 },
+        didParseCell: function (data) {
+          if (data.row.raw && data.row.raw.classList && data.row.raw.classList.contains("total-row")) {
+            data.cell.styles.fontStyle = "bold";
+            data.cell.styles.fillColor = [214, 51, 108];
+            data.cell.styles.textColor = [255, 255, 255];
+          }
+        }
+      });
+
+      // Footer with page number
+      const pageCount = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(10);
+        doc.text(`Page ${i} of ${pageCount}`, 285, 200, { align: "right" });
+      }
+
+      // 👉 File name using last month + time
+      const table = document.getElementById("myTable");
+      const lastMonth = table.querySelector("tr th:last-child").innerText.trim(); // e.g. "10 Aug"
+      const parts = lastMonth.split(" ");
+      const day = parts[0];       // "10"
+      const month = parts[1];     // "Aug"
+      const year = new Date().getFullYear();
+
+      // Format time safely (HH-MM-SS)
+      const hh = String(now.getHours()).padStart(2, "0");
+      const mm = String(now.getMinutes()).padStart(2, "0");
+      const ss = String(now.getSeconds()).padStart(2, "0");
+      const timeForFile = `${hh}-${mm}-${ss}`;
+
+      const fileName = `Deposited_Amount_${day}_${month}_${year}_${timeForFile}.pdf`;
+      doc.save(fileName);
     });
-  });
-
-  // Close dropdown if clicked outside
-  window.addEventListener('click', function() {
-    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
-  });
   </script>
+
+</body>
 </html>
-
-
-
-        
-
-
-
-
-
-
-
-
