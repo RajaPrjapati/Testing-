@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     }
 
     .card {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
       background: #fff;
       border-radius: 10px;
@@ -30,6 +30,7 @@
 
     .table-container {
       overflow-x: auto;
+      margin-top: 20px;
     }
 
     table {
@@ -41,7 +42,7 @@
 
     th, td {
       border: 1px solid #ddd;
-      padding: 12px;
+      padding: 10px;
       text-align: center;
       font-size: 14px;
     }
@@ -70,15 +71,11 @@
     td:nth-child(4),
     td:nth-child(5),
     td:nth-child(6),
-    td:nth-child(7) {
+    td:nth-child(7),
+    td:nth-child(8),
+    td:nth-child(9) {
       text-align: right;
       font-family: monospace;
-    }
-
-    .total-row {
-      background: #ffe6eb !important;
-      font-weight: bold;
-      color: #d6336c;
     }
 
     .badge {
@@ -99,11 +96,36 @@
       color: #721c24;
     }
 
-    /* ✅ Responsive */
+    .form-container {
+      background: #ffe6eb;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .form-container input, .form-container select {
+      padding: 6px;
+      margin: 4px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .form-container button {
+      background: #d6336c;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background: #b52b5a;
+    }
+
     @media (max-width: 768px) {
       th, td {
         font-size: 12px;
-        padding: 8px;
+        padding: 6px;
       }
       h2 {
         font-size: 18px;
@@ -116,8 +138,24 @@
   <div class="card">
     <h2>Rent - Mahadev Bhaiya (14 June 2024)</h2>
 
+    <!-- ✅ Form for adding new rows -->
+    <div class="form-container">
+      <input type="text" id="months" placeholder="Months (e.g. 14 Mar - 14 Apr 2025)">
+      <input type="number" id="rent" placeholder="Rent">
+      <input type="number" id="rf" placeholder="R.F">
+      <input type="number" id="rt" placeholder="R.T">
+      <input type="number" id="unitTotal" placeholder="Total Unit">
+      <input type="number" id="unitAmount" placeholder="Unit Amount">
+      <input type="number" id="moterBill" placeholder="Moter Bill">
+      <select id="status">
+        <option value="paid">Paid</option>
+        <option value="unpaid">Unpaid</option>
+      </select>
+      <button onclick="addRow()">➕ Add Row</button>
+    </div>
+
     <div class="table-container">
-      <table>
+      <table id="rentTable">
         <thead>
           <tr>
             <th>S.R</th>
@@ -142,50 +180,45 @@
             <td>4</td>
             <td>40</td>
             <td>60</td>
-            <td>2400p</td>
-            <td><span class="badge paid">Paid 24/8/25</span><br>
-              Rent 2300<br>
-              Bijli Bill 40<br>
-              Pani Bill 60<br>
-              <b>Total 2400</b>
-            </td>
-          </tr>
-            <tr>
-            <td>2.</td>
-            <td>14 Feb - 14 Mar 2025</td>
-            <td>2300</td>
-            <td>5</td>
-            <td>10</td>
-            <td>5</td>
-            <td>50</td>
-            <td>60</td>
-            <td>2350</td>
-            <td><span class="badge unpaid">Unpaid 24/12/2025</span><br>
-              Rent 2300<br>
-              Bijli Bill 40<br>
-              Pani Bill 60<br>
-              <b>Total 2400</b>
-            </td>
-          </tr>
-            <td>2.</td>
-            <td>Total</td>
-            <td>4600</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>90</td>
-            <td>120</td>
-            <td>4690</td>
-            <td></td>
+            <td>2400</td>
+            <td><span class="badge paid">Paid</span></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
+  <script>
+    function addRow() {
+      let table = document.getElementById("rentTable").getElementsByTagName("tbody")[0];
+      let rowCount = table.rows.length + 1;
+
+      let months = document.getElementById("months").value;
+      let rent = parseFloat(document.getElementById("rent").value) || 0;
+      let rf = parseFloat(document.getElementById("rf").value) || 0;
+      let rt = parseFloat(document.getElementById("rt").value) || 0;
+      let totalUnit = parseFloat(document.getElementById("unitTotal").value) || 0;
+      let unitAmount = parseFloat(document.getElementById("unitAmount").value) || 0;
+      let moterBill = parseFloat(document.getElementById("moterBill").value) || 0;
+      let status = document.getElementById("status").value;
+
+      let total = rent + unitAmount + moterBill;
+
+      let newRow = table.insertRow();
+      newRow.innerHTML = `
+        <td>${rowCount}.</td>
+        <td>${months}</td>
+        <td>${rent}</td>
+        <td>${rf}</td>
+        <td>${rt}</td>
+        <td>${totalUnit}</td>
+        <td>${unitAmount}</td>
+        <td>${moterBill}</td>
+        <td>${total}</td>
+        <td><span class="badge ${status}">${status.charAt(0).toUpperCase() + status.slice(1)}</span></td>
+      `;
+    }
+  </script>
+
 </body>
 </html>
-
-
-
-
