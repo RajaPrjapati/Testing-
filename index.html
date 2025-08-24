@@ -12,11 +12,13 @@
     body {
       font-family: Arial, sans-serif;
       background: white;
-      margin: 20px;
+      margin: 0;
+      padding: 0;
     }
     h2 {
       text-align: center;
       color: #d6336c;
+      margin: 10px 0;
     }
     a {
       text-decoration: none;
@@ -28,8 +30,16 @@
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
-      margin: 15px auto;
-      max-width: 600px;
+      max-width: 100%;
+      position: fixed;   /* ✅ fixed top */
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 10px;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      flex-direction: column;
     }
     #searchBox {
       flex: 1;
@@ -56,7 +66,8 @@
     }
     .table-container {
       overflow-x: auto;
-      margin-top: 15px;
+      margin-top: 160px; /* ✅ space for fixed top-bar */
+      padding: 20px;
     }
     table {
       width: 100%;
@@ -97,212 +108,170 @@
   </style>
 </head>
 <body>
-  <h2><a href="index.html">💰 interest Details</a></h2>
-
+  <!-- Fixed top-bar -->
   <div class="top-bar">
-    <input type="text" id="searchBox" placeholder="Search Member Name...">
-    <button id="downloadBtn">📄 Download PDF</button>
+    <h2><a href="index.html">💰 Interest Details</a></h2>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+      <input type="text" id="searchBox" placeholder="Search Member Name...">
+      <button id="downloadBtn">📄 Download PDF</button>
+    </div>
   </div>
 
   <div class="table-container">
     <table id="myTable">
-                           <tr>
-          <th>S.N</th>
-          <th>Member Name</th>
-          <th> 10 January 2025</th>
-          <th> 10 February</th>
-          <th> 10 March</th>
-          <th> 10 April</th>
-          <th> 10 May</th>
-          <th> 10 June</th>
-          <th> 10 July</th>
-          <th> 10 August</th>
-         <!-- <th> 10 September</th>
-          <th> 10 October</th>
-          <th> 10 November</th>
-          <th> 10 December</th> -->
-          <th><b> Grand Total</b></th>
-        </tr>
+      <tr>
+        <th>S.N</th>
+        <th>Member Name</th>
+        <th>10 January 2025</th>
+        <th>10 February</th>
+        <th>10 March</th>
+        <th>10 April</th>
+        <th>10 May</th>
+        <th>10 June</th>
+        <th>10 July</th>
+        <th>10 August</th>
+        <th><b>Grand Total</b></th>
+      </tr>
       
-        <tr>
-          <td>1.</td>
-          <td>Anuj Lodhi</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-        <!--  <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-            <td><b>4000</b></td>
-        </tr>
+      <tr>
+        <td>1.</td>
+        <td>Anuj Lodhi</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td><b>4000</b></td>
+      </tr>
 
-        <tr>
-          <td>2.</td>
-          <td>Raja Prajapati</b></td>
-          <td>-</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-   <!--  <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-            <td><b>3500</b></td>
-        </tr>
+      <tr>
+        <td>2.</td>
+        <td>Raja Prajapati</td>
+        <td>-</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td><b>3500</b></td>
+      </tr>
 
-        <tr>
-          <td>3.</td>
-          <td>Shiv Prakash</td>
-          <td>-</td>
-          <td>-</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-    <!--  <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-            <td><b>3000</b></td>
-        </tr>
+      <tr>
+        <td>3.</td>
+        <td>Shiv Prakash</td>
+        <td>-</td>
+        <td>-</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td><b>3000</b></td>
+      </tr>
 
-        <tr>
-          <td>4.</td>
-          <td>Subham Kumar</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-         <!-- <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-            <td><b>2500</b></td>
-        </tr>
+      <tr>
+        <td>4.</td>
+        <td>Subham Kumar</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td><b>2500</b></td>
+      </tr>
 
-        <tr>
-          <td>5.</td>
-          <td>Annu Kumari</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-          <td>500</td>
-       <!--   <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-            <td><b>2000</b></td>
-        </tr>
+      <tr>
+        <td>5.</td>
+        <td>Annu Kumari</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td>500</td>
+        <td><b>2000</b></td>
+      </tr>
 
-        <tr>
-          <td>6.</td>
-          <td>Aniket kumar</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>460</td>
-          <td>460</td>
-          <td>460</td>
-       <!--   <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-            <td><b>1380</b></td>
-        </tr>
+      <tr>
+        <td>6.</td>
+        <td>Aniket Kumar</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>460</td>
+        <td>460</td>
+        <td>460</td>
+        <td><b>1380</b></td>
+      </tr>
 
-        <tr>
-          <td>6.</td>
-          <td>Mukesh kumar</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>70</td>
-          <td>70</td>
-          <td>70</td>
-      <!--    <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-             <td><b>210</b></td>
-        </tr>
+      <tr>
+        <td>7.</td>
+        <td>Mukesh Kumar</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>70</td>
+        <td>70</td>
+        <td>70</td>
+        <td><b>210</b></td>
+      </tr>
 
-        <tr>
-          <td>7.</td>
-          <td>Tileshar kumar</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>460</td>
-          <td>460</td>
-      <!--    <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-            <td><b>920</b></td>
-        </tr>
+      <tr>
+        <td>8.</td>
+        <td>Tileshar Kumar</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>460</td>
+        <td>460</td>
+        <td><b>920</b></td>
+      </tr>
 
-        <tr>
-          <td>8.</td>
-          <td>Kittu Kumari</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>460</td>
-      <!--    <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-            <td><b>460</b></td>
-        </tr>
+      <tr>
+        <td>9.</td>
+        <td>Kittu Kumari</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>460</td>
+        <td><b>460</b></td>
+      </tr>
 
-        <tr>
-          <td></td>
-          <td><b>Total Interest</b></td>
-          <td><b>500</b></td>
-          <td><b>1000</b></td>
-          <td><b>1500</b></td>
-          <td><b>2000</b></td>
-          <td><b>2500</b></td>
-          <td><b>3030</b></td>
-          <td><b>3490</b></td>
-          <td><b>3950</b></td>
-        <!--  <td></td>
-          <td></td>
-          <td></td>
-          <td></td> -->
-            <td><b>17970</b></td>
-        </tr>                       
+      <tr class="total-row">
+        <td></td>
+        <td><b>Total Interest</b></td>
+        <td><b>500</b></td>
+        <td><b>1000</b></td>
+        <td><b>1500</b></td>
+        <td><b>2000</b></td>
+        <td><b>2500</b></td>
+        <td><b>3030</b></td>
+        <td><b>3490</b></td>
+        <td><b>3950</b></td>
+        <td><b>17970</b></td>
+      </tr>
     </table>
   </div>
 
@@ -318,44 +287,34 @@
       });
     });
 
-    // PDF Download Function (Improved)
+    // PDF Download Function
     document.getElementById("downloadBtn").addEventListener("click", () => {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF("landscape");
 
-      // Title
       doc.setFontSize(18);
       doc.setTextColor(214, 51, 108);
-      doc.text(" Deposited Monthly Interest - Year 2025", 14, 20);
+      doc.text("Deposited Monthly Interest - Year 2025", 14, 20);
 
-      // Extract data
       let table = document.getElementById("myTable");
       let head = [];
       let body = [];
 
-      // Header
       let headerCells = table.rows[0].cells;
       for (let i = 0; i < headerCells.length; i++) {
         head.push(headerCells[i].innerText);
       }
 
-      // Rows
       for (let i = 1; i < table.rows.length; i++) {
         let row = [];
         let cells = table.rows[i].cells;
         for (let j = 0; j < cells.length; j++) {
           let val = cells[j].innerText;
-          // Mark "Left" red in PDF
-          if (val === "Left") {
-            row.push({ content: val, styles: { textColor: [200, 0, 0], fontStyle: 'bold' } });
-          } else {
-            row.push(val);
-          }
+          row.push(val);
         }
         body.push(row);
       }
 
-      // AutoTable
       doc.autoTable({
         head: [head],
         body: body,
@@ -372,8 +331,8 @@
           halign: "center"
         },
         columnStyles: {
-          0: { cellWidth: 12 },   // S.N small
-          1: { cellWidth: 40 },   // Name wider
+          0: { cellWidth: 12 },
+          1: { cellWidth: 40 }
         },
         styles: { cellPadding: 3 },
         didDrawPage: (data) => {
@@ -385,7 +344,6 @@
         }
       });
 
-      // Save
       let today = new Date();
       let time = today.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       let fileName = `Deposited_interest_${today.getDate()}_${today.toLocaleString('default',{month:'short'})}_${today.getFullYear()}_${time}.pdf`;
@@ -394,9 +352,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
