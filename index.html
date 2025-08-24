@@ -131,7 +131,7 @@
   </style>
 </head>
 <body>
-  <h2><a href="index.html">💰 Interest Details</a></h2>
+  <h2><a href="index.html">Rent - Mahadev Bhaiya (14 June 2024)</a></h2>
 
   <div class="top-bar">
     <input type="text" id="searchBox" placeholder="🔎 Search Member Name...">
@@ -194,7 +194,7 @@
       // Title
       doc.setFontSize(18);
       doc.setTextColor(214, 51, 108);
-      doc.text(" Deposited Monthly Interest - Year 2025", 14, 20);
+      doc.text(" Rent Detals of Mahadev Bhaiya", 14, 20);
 
       // Extract data
       let table = document.getElementById("myTable");
@@ -251,12 +251,13 @@
 
       let today = new Date();
       let time = today.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-      let fileName = `Deposited_interest_${today.getDate()}_${today.toLocaleString('default',{month:'short'})}_${today.getFullYear()}_${time}.pdf`;
+      let fileName = `Rent_Mahadev Bhaiya_${today.getDate()}_${today.toLocaleString('default',{month:'short'})}_${today.getFullYear()}_${time}.pdf`;
       doc.save(fileName);
     });
   </script>
 </body>
 </html>
+
 
 
 
