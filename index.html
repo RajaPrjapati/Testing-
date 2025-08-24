@@ -9,6 +9,7 @@
       font-family: Arial, sans-serif;
       background: #f8f9fa;
       margin: 20px;
+      color: #333;
     }
 
     h2 {
@@ -27,6 +28,8 @@
       margin: 0 auto;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       background: white;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     th, td {
@@ -41,10 +44,26 @@
       position: sticky;
       top: 0;
       z-index: 2;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.5px;
     }
 
     tr:nth-child(even) td {
-      background: #f2f2f2;
+      background: #f9f9f9;
+    }
+
+    tr:hover td {
+      background: #ffe6eb;
+      transition: 0.3s;
+    }
+
+    td:nth-child(3),
+    td:nth-child(4),
+    td:nth-child(5),
+    td:nth-child(6),
+    td:nth-child(7) {
+      text-align: right; /* ✅ numbers aligned neatly */
     }
 
     .total-row {
@@ -52,11 +71,21 @@
       font-weight: bold;
       color: #d6336c;
     }
+
+    .status-paid {
+      color: green;
+      font-weight: bold;
+    }
+
+    .status-unpaid {
+      color: red;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
-  <h2>Rent- Mahadev Bhaiya 14 June 2024</h2>
+  <h2>Rent - Mahadev Bhaiya (14 June 2024)</h2>
 
   <div class="table-container">
     <table>
@@ -68,42 +97,35 @@
           <th>R.F</th>
           <th>R.T</th>
           <th>Unit Amount</th>
-          <th>Total</th
+          <th>Total</th>
           <th>Comment</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>1.</td>
-          <td>14 jan - 14 feb 2025</td>
+          <td>14 Jan - 14 Feb 2025</td>
           <td>2300</td>
           <td>1</td>
           <td>5</td>
           <td>40</td>
           <td>2340</td>
-          <td>paid</td>
-      
+          <td class="status-paid">Paid</td>
         </tr>
         <tr>
           <td>2.</td>
-          <td>14 feb - 14 march 2025</td>
+          <td>14 Feb - 14 Mar 2025</td>
           <td>2300</td>
           <td>5</td>
           <td>10</td>
           <td>50</td>
           <td>2350</td>
-          <td>paid</td>
-          
+          <td class="status-paid">Paid</td>
         </tr>
-        <td></td>
-          <td>2000</td>
-          <td>2000</td>
-          <td>2000</td>
-          <td>2000</td>
-          <td>2000</td>
-          <td>2000</td>
-          <td>2000</td>
-          
+        <tr class="total-row">
+          <td colspan="6">Grand Total</td>
+          <td>4690</td>
+          <td>-</td>
         </tr>
       </tbody>
     </table>
@@ -111,9 +133,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
