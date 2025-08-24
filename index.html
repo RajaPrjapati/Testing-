@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,10 +12,20 @@
       color: #333;
     }
 
+    .card {
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
     h2 {
       text-align: center;
       color: #d6336c;
       margin-bottom: 20px;
+      font-size: 22px;
     }
 
     .table-container {
@@ -25,9 +35,6 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 0 auto;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      background: white;
       border-radius: 8px;
       overflow: hidden;
     }
@@ -36,6 +43,7 @@
       border: 1px solid #ddd;
       padding: 12px;
       text-align: center;
+      font-size: 14px;
     }
 
     th {
@@ -45,7 +53,7 @@
       top: 0;
       z-index: 2;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 0.5px;
     }
 
@@ -63,86 +71,113 @@
     td:nth-child(5),
     td:nth-child(6),
     td:nth-child(7) {
-      text-align: right; /* ✅ numbers aligned neatly */
+      text-align: right;
+      font-family: monospace;
     }
 
     .total-row {
-      background: #ffe6eb;
+      background: #ffe6eb !important;
       font-weight: bold;
       color: #d6336c;
     }
 
-    .status-paid {
-      color: green;
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 12px;
       font-weight: bold;
     }
 
-    .status-unpaid {
-      color: red;
-      font-weight: bold;
+    .paid {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .unpaid {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    /* ✅ Responsive */
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 12px;
+        padding: 8px;
+      }
+      h2 {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h2>Rent - Mahadev Bhaiya (14 June 2024)</h2>
+  <div class="card">
+    <h2>Rent - Mahadev Bhaiya (14 June 2024)</h2>
 
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>S.R</th>
-          <th>Months</th>
-          <th>Rent</th>
-          <th>R.F</th>
-          <th>R.T</th>
-          <th>Unit Amount</th>
-          <th>Total</th>
-          <th>Comments</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1.</td>
-          <td>14 Jan - 14 Feb 2025</td>
-          <td>2300</td>
-          <td>1</td>
-          <td>5</td>
-          <td>40</td>
-          <td>2340</td>
-          <td>Rent 2300
-Bijli bil 40
-Pani bill 60
-Total 2400</td>
-        </tr>
-        <tr>
-          <td>2.</td>
-          <td>14 Feb - 14 Mar 2025</td>
-          <td>2300</td>
-          <td>5</td>
-          <td>10</td>
-          <td>50</td>
-          <td>2350</td>
-          <td>Rent 2300
-Bijli bil 40
-Pani bill 60
-Total 2400</td>
-        <tr>
-          <td>2</td>
-          <td>Total </td></td>
-          <td>4600</td>
-          <td></td>
-          <td></td>
-          <td>90</td>
-          <td>4690</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>S.R</th>
+            <th>Months</th>
+            <th>Rent</th>
+            <th>R.F</th>
+            <th>R.T</th>
+            <th>Unit Amount</th>
+            <th>Moter Amount</th>
+            <th>Total</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td>14 Jan - 14 Feb 2025</td>
+            <td>2300</td>
+            <td>1</td>
+            <td>5</td>
+            <td>40</td>
+            <td>60</td>
+            <td>60</td>
+            <td>2340</td>
+            <td><span class="badge paid">Paid 24/8/25</span><br>
+              Rent 2300<br>
+              Bijli Bill 40<br>
+              Pani Bill 60<br>
+              <b>Total 2400</b>
+            </td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td>14 Feb - 14 Mar 2025</td>
+            <td>2300</td>
+            <td>5</td>
+            <td>10</td>
+            <td>50</td>
+            <td>2350</td>
+            <td><span class="badge unpaid">Unpaid 24/12/2025</span><br>
+              Rent 2300<br>
+              Bijli Bill 40<br>
+              Pani Bill 60<br>
+              <b>Total 2400</b>
+            </td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">Grand Total</td>
+            <td>4600</td>
+            <td></td>
+            <td></td>
+            <td>90</td>
+            <td>120</td>
+            <td>4690</td>
+            <td>2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </body>
 </html>
-
-
-
