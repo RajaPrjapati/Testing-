@@ -388,12 +388,13 @@
       // Save
       let today = new Date();
       let time = today.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-      let fileName = `Deposited_Amount_${today.getDate()}_${today.toLocaleString('default',{month:'short'})}_${today.getFullYear()}_${time}.pdf`;
+      let fileName = `Deposited_interest_${today.getDate()}_${today.toLocaleString('default',{month:'short'})}_${today.getFullYear()}_${time}.pdf`;
       doc.save(fileName);
     });
   </script>
 </body>
 </html>
+
 
 
 
