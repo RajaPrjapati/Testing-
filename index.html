@@ -106,6 +106,28 @@
       color: white;
       font-weight: bold;
     }
+
+    /* === Comments Section Styling === */
+    .comments {
+      text-align: left;
+    }
+    .paid-status {
+      display: inline-block;
+      background: #28a745;
+      color: white;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .comment-detail {
+      font-size: 12px;
+      color: #555;
+      margin: 2px 0;
+      padding-left: 4px;
+      border-left: 2px solid #eee;
+    }
   </style>
 </head>
 <body>
@@ -134,7 +156,7 @@
       </thead>
       <tr>
         <td>1.</td>
-        <td>14Jan - 14Feb 2025 </td>
+        <td>14Jan - 14Feb 2025</td>
         <td>2300</td>
         <td>1</td>
         <td>5</td>
@@ -142,11 +164,11 @@
         <td>40</td>
         <td>90</td>
         <td>2400</td>
-        <td>
-          paid 12/8/2025 <br>
-          Rent 2300 <br>
-          Bijli bill 1046 <br>
-          Moter bill 60
+        <td class="comments">
+          <div class="paid-status">✅ Paid on 12/08/2025</div>
+          <div class="comment-detail">Rent: 2300</div>
+          <div class="comment-detail">Bijli Bill: 1046</div>
+          <div class="comment-detail">Moter Bill: 60</div>
         </td>
       </tr>
     </table>
@@ -164,7 +186,7 @@
       });
     });
 
-    // PDF Download Function (unchanged)
+    // PDF Download Function
     document.getElementById("downloadBtn").addEventListener("click", () => {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF("landscape");
@@ -189,8 +211,8 @@
         let cells = table.rows[i].cells;
         for (let j = 0; j < cells.length; j++) {
           let val = cells[j].innerText;
-          if (val === "Left") {
-            row.push({ content: val, styles: { textColor: [200, 0, 0], fontStyle: 'bold' } });
+          if (val.includes("Paid")) {
+            row.push({ content: val, styles: { textColor: [0, 128, 0], fontStyle: 'bold' } });
           } else {
             row.push(val);
           }
@@ -235,4 +257,3 @@
   </script>
 </body>
 </html>
-
