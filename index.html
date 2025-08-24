@@ -1,256 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mahadev Bhaiya</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      margin: 20px;
-      color: #333;
-    }
-
-    .card {
-      max-width: 1100px;
-      margin: auto;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 20px;
-    }
-
-    h2 {
-      text-align: center;
-      color: #d6336c;
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
-
-    .table-container {
-      overflow-x: auto;
-      margin-top: 20px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    th {
-      background: #d6336c;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      text-transform: uppercase;
-      font-size: 13px;
-      letter-spacing: 0.5px;
-    }
-
-    tr:nth-child(even) td {
-      background: #f9f9f9;
-    }
-
-    tr:hover td {
-      background: #ffe6eb;
-      transition: 0.3s;
-    }
-
-    td:nth-child(3),
-    td:nth-child(4),
-    td:nth-child(5),
-    td:nth-child(6),
-    td:nth-child(7),
-    td:nth-child(8),
-    td:nth-child(9) {
-      text-align: right;
-      font-family: monospace;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .paid {
-      background: #d4edda;
-      color: #155724;
-    }
-
-    .unpaid {
-      background: #f8d7da;
-      color: #721c24;
-    }
-
-    .form-container {
-      background: #ffe6eb;
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    .form-container input, .form-container select {
-      padding: 6px;
-      margin: 4px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .form-container button {
-      background: #d6336c;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .form-container button:hover {
-      background: #b52b5a;
-    }
-
-    @media (max-width: 768px) {
-      th, td {
-        font-size: 12px;
-        padding: 6px;
-      }
-      h2 {
-        font-size: 18px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahadev Bhaiya</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 20px; color: #333; }
+  .card { max-width: 1100px; margin: auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 20px; }
+  h2 { text-align: center; color: #d6336c; margin-bottom: 20px; font-size: 22px; }
+  .table-container { overflow-x: auto; margin-top: 20px; }
+  table { width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; }
+  th, td { border: 1px solid #ddd; padding: 10px; text-align: center; font-size: 14px; }
+  th { background: #d6336c; color: white; position: sticky; top: 0; z-index: 2; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px; }
+  tr:nth-child(even) td { background: #f9f9f9; }
+  tr:hover td { background: #ffe6eb; transition: 0.3s; }
+  td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8), td:nth-child(9) { text-align: right; font-family: monospace; }
+  .badge { display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: bold; }
+  .paid { background: #d4edda; color: #155724; }
+  .unpaid { background: #f8d7da; color: #721c24; }
+  .form-container { background: #ffe6eb; padding: 15px; border-radius: 10px; }
+  .form-container input, .form-container select { padding: 6px; margin: 4px; border: 1px solid #ccc; border-radius: 6px; }
+  .form-container button { background: #d6336c; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; }
+  .form-container button:hover { background: #b52b5a; }
+  .edit-btn, .delete-btn { padding: 4px 8px; margin: 2px; border-radius: 4px; cursor: pointer; color: white; font-size: 12px; border: none; }
+  .edit-btn { background-color: #007bff; }
+  .delete-btn { background-color: #dc3545; }
+  @media (max-width: 768px) { th, td { font-size: 12px; padding: 6px; } h2 { font-size: 18px; } }
+</style>
 </head>
 <body>
 
-  <div class="card">
-    <h2>Rent - Mahadev Bhaiya (14 June 2024)</h2>
+<div class="card">
+  <h2>Rent - Mahadev Bhaiya (14 June 2024)</h2>
 
-    <!-- Form for adding new rows -->
-    <div class="form-container">
-      <input type="text" id="months" placeholder="Months (e.g. 14 Mar - 14 Apr 2025)">
-      <input type="number" id="rent" placeholder="Rent">
-      <input type="number" id="rf" placeholder="R.F">
-      <input type="number" id="rt" placeholder="R.T">
-      <input type="number" id="unitTotal" placeholder="Total Unit">
-      <input type="number" id="unitAmount" placeholder="Unit Amount">
-      <input type="number" id="moterBill" placeholder="Moter Bill">
-      <select id="status">
-        <option value="paid">Paid</option>
-        <option value="unpaid">Unpaid</option>
-      </select>
-      <button onclick="addRow()">➕ Add Row</button>
-    </div>
-
-    <div class="table-container">
-      <table id="rentTable">
-        <thead>
-          <tr>
-            <th>S.R</th>
-            <th>Months</th>
-            <th>Rent</th>
-            <th>R.F</th>
-            <th>R.T</th>
-            <th>Total Unit</th>
-            <th>Unit Amount</th>
-            <th>Moter Bill</th>
-            <th>Total</th>
-            <th>Comments</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Rows will be added here -->
-        </tbody>
-      </table>
-    </div>
+  <div class="form-container">
+    <input type="text" id="months" placeholder="Months (e.g. 14 Mar - 14 Apr 2025)">
+    <input type="number" id="rent" placeholder="Rent">
+    <input type="number" id="rf" placeholder="R.F">
+    <input type="number" id="rt" placeholder="R.T">
+    <input type="number" id="unitTotal" placeholder="Total Unit">
+    <input type="number" id="unitAmount" placeholder="Unit Amount">
+    <input type="number" id="moterBill" placeholder="Moter Bill">
+    <select id="status">
+      <option value="paid">Paid</option>
+      <option value="unpaid">Unpaid</option>
+    </select>
+    <button onclick="addRow()">➕ Add Row</button>
   </div>
 
-  <script>
-    // Load existing rows from localStorage
-    window.onload = function() {
-      let savedData = JSON.parse(localStorage.getItem("rentRows")) || [];
-      let table = document.getElementById("rentTable").getElementsByTagName("tbody")[0];
-      
-      savedData.forEach((row, index) => {
-        let newRow = table.insertRow();
-        newRow.innerHTML = `
-          <td>${index + 1}.</td>
-          <td>${row.months}</td>
-          <td>${row.rent}</td>
-          <td>${row.rf}</td>
-          <td>${row.rt}</td>
-          <td>${row.totalUnit}</td>
-          <td>${row.unitAmount}</td>
-          <td>${row.moterBill}</td>
-          <td>${row.total}</td>
-          <td><span class="badge ${row.status}">${row.status.charAt(0).toUpperCase() + row.status.slice(1)}</span></td>
-        `;
-      });
-    }
+  <div class="table-container">
+    <table id="rentTable">
+      <thead>
+        <tr>
+          <th>S.R</th>
+          <th>Months</th>
+          <th>Rent</th>
+          <th>R.F</th>
+          <th>R.T</th>
+          <th>Total Unit</th>
+          <th>Unit Amount</th>
+          <th>Moter Bill</th>
+          <th>Total</th>
+          <th>Comments</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
 
-    function addRow() {
-      let months = document.getElementById("months").value.trim();
-      let rent = parseFloat(document.getElementById("rent").value) || 0;
-      let rf = parseFloat(document.getElementById("rf").value) || 0;
-      let rt = parseFloat(document.getElementById("rt").value) || 0;
-      let totalUnit = parseFloat(document.getElementById("unitTotal").value) || 0;
-      let unitAmount = parseFloat(document.getElementById("unitAmount").value) || 0;
-      let moterBill = parseFloat(document.getElementById("moterBill").value) || 0;
-      let status = document.getElementById("status").value;
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-      // Prevent adding empty rows
-      if (months === '' && rent === 0 && rf === 0 && rt === 0 && totalUnit === 0 && unitAmount === 0 && moterBill === 0) {
-        alert("Please enter at least the Months or some numeric values before adding!");
-        return;
-      }
+<script>
+  // 🔹 Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
 
-      let total = rent + unitAmount + moterBill;
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const tableBody = document.getElementById("rentTable").getElementsByTagName("tbody")[0];
 
-      let table = document.getElementById("rentTable").getElementsByTagName("tbody")[0];
-      let rowCount = table.rows.length + 1;
+  let editId = null;
 
-      let newRow = table.insertRow();
-      newRow.innerHTML = `
-        <td>${rowCount}.</td>
-        <td>${months}</td>
-        <td>${rent}</td>
-        <td>${rf}</td>
-        <td>${rt}</td>
-        <td>${totalUnit}</td>
-        <td>${unitAmount}</td>
-        <td>${moterBill}</td>
-        <td>${total}</td>
-        <td><span class="badge ${status}">${status.charAt(0).toUpperCase() + status.slice(1)}</span></td>
+  // Load and listen to Firestore in real-time
+  db.collection("rentData").orderBy("timestamp").onSnapshot(snapshot => {
+    tableBody.innerHTML = "";
+    let index = 1;
+    snapshot.forEach(doc => {
+      const row = doc.data();
+      let tr = tableBody.insertRow();
+      tr.innerHTML = `
+        <td>${index++}.</td>
+        <td>${row.months}</td>
+        <td>${row.rent}</td>
+        <td>${row.rf}</td>
+        <td>${row.rt}</td>
+        <td>${row.totalUnit}</td>
+        <td>${row.unitAmount}</td>
+        <td>${row.moterBill}</td>
+        <td>${row.total}</td>
+        <td><span class="badge ${row.status}">${row.status.charAt(0).toUpperCase() + row.status.slice(1)}</span></td>
+        <td>
+          <button class="edit-btn" onclick="editRow('${doc.id}')">Edit</button>
+          <button class="delete-btn" onclick="deleteRow('${doc.id}')">Delete</button>
+        </td>
       `;
+    });
+  });
 
-      // Save row in localStorage
-      let savedData = JSON.parse(localStorage.getItem("rentRows")) || [];
-      savedData.push({ months, rent, rf, rt, totalUnit, unitAmount, moterBill, total, status });
-      localStorage.setItem("rentRows", JSON.stringify(savedData));
+  function addRow() {
+    let months = document.getElementById("months").value.trim();
+    let rent = parseFloat(document.getElementById("rent").value) || 0;
+    let rf = parseFloat(document.getElementById("rf").value) || 0;
+    let rt = parseFloat(document.getElementById("rt").value) || 0;
+    let totalUnit = parseFloat(document.getElementById("unitTotal").value) || 0;
+    let unitAmount = parseFloat(document.getElementById("unitAmount").value) || 0;
+    let moterBill = parseFloat(document.getElementById("moterBill").value) || 0;
+    let status = document.getElementById("status").value;
 
-      // Clear form
-      document.getElementById("months").value = '';
-      document.getElementById("rent").value = '';
-      document.getElementById("rf").value = '';
-      document.getElementById("rt").value = '';
-      document.getElementById("unitTotal").value = '';
-      document.getElementById("unitAmount").value = '';
-      document.getElementById("moterBill").value = '';
-      document.getElementById("status").value = 'paid';
+    if (months === '' && rent === 0 && rf === 0 && rt === 0 && totalUnit === 0 && unitAmount === 0 && moterBill === 0) {
+      alert("Please enter at least Months or some numeric values!");
+      return;
     }
-  </script>
+
+    let total = rent + unitAmount + moterBill;
+
+    const data = { months, rent, rf, rt, totalUnit, unitAmount, moterBill, total, status, timestamp: firebase.firestore.FieldValue.serverTimestamp() };
+
+    if (editId) {
+      db.collection("rentData").doc(editId).update(data).then(() => { editId = null; });
+    } else {
+      db.collection("rentData").add(data);
+    }
+
+    // Clear form
+    document.getElementById("months").value = '';
+    document.getElementById("rent").value = '';
+    document.getElementById("rf").value = '';
+    document.getElementById("rt").value = '';
+    document.getElementById("unitTotal").value = '';
+    document.getElementById("unitAmount").value = '';
+    document.getElementById("moterBill").value = '';
+    document.getElementById("status").value = 'paid';
+  }
+
+  function editRow(id) {
+    editId = id;
+    db.collection("rentData").doc(id).get().then(doc => {
+      const row = doc.data();
+      document.getElementById("months").value = row.months;
+      document.getElementById("rent").value = row.rent;
+      document.getElementById("rf").value = row.rf;
+      document.getElementById("rt").value = row.rt;
+      document.getElementById("unitTotal").value = row.totalUnit;
+      document.getElementById("unitAmount").value = row.unitAmount;
+      document.getElementById("moterBill").value = row.moterBill;
+      document.getElementById("status").value = row.status;
+    });
+  }
+
+  function deleteRow(id) {
+    if (confirm("Are you sure you want to delete this row?")) {
+      db.collection("rentData").doc(id).delete();
+    }
+  }
+</script>
 
 </body>
 </html>
