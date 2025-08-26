@@ -5,44 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paid Money Schedule</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #075E54; /* WhatsApp style green */
-      color: white;
+    * {
       margin: 0;
-      padding: 20px;
-    }
-    .container {
-      background-color: #064C44;
-      padding: 20px;
-      border-radius: 10px;
-      width: fit-content;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    }
-    h2 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-    ul {
-      list-style: none;
       padding: 0;
+      box-sizing: border-box;
     }
-    li {
-      font-size: 18px;
-      margin: 10px 0;
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ece5dd; /* WhatsApp-like background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
     }
-    .emoji {
+
+    .chat-container {
+      background-color: #075E54; 
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-header {
+      font-size: clamp(18px, 4vw, 22px);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .chat-header span {
       font-size: 22px;
+    }
+
+    .chat-sections {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .chat-section {
+      flex: 1;
+      background-color: #064C44;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+
+      /* Keep single line */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: clamp(12px, 3vw, 18px);
+    }
+
+    /* On small screens, stack sections vertically */
+    @media (max-width: 600px) {
+      .chat-sections {
+        flex-direction: column;
+      }
+    }
+
+    .timestamp {
+      text-align: right;
+      font-size: clamp(12px, 3vw, 14px);
+      margin-top: 15px;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Next 2 months paid money <span class="emoji">💰</span></h2>
-    <ul>
-      <li>1. Raja Prajapati — 10 September 2025</li>
-      <li>2. Anuj Lodhi — 10 October 2025</li>
-    </ul>
+  <div class="chat-container">
+    <div class="chat-header">Next 2 months will paid money <span>💰</span></div>
+    
+    <div class="chat-sections">
+      <div class="chat-section">
+        1. Raja Prajapati — 10 September 2025
+      </div>
+      <div class="chat-section">
+        2. Anuj Lodhi — 10 October 2025
+      </div>
+    </div>
+
+    <div class="timestamp">4:25 am ✔✔</div>
   </div>
 </body>
 </html>
