@@ -13,12 +13,23 @@
 
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ece5dd; /* WhatsApp-like background */
+      background: url("1064874392") 
+                  no-repeat center center/cover; /* Background image */
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       padding: 10px;
+      position: relative;
+    }
+
+    /* Dark overlay for better text readability */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
     }
 
     .chat-container {
@@ -28,7 +39,9 @@
       border-radius: 12px;
       max-width: 700px;
       width: 100%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
     }
 
     .chat-header {
@@ -61,7 +74,6 @@
       font-size: clamp(12px, 3vw, 18px);
     }
 
-    /* On small screens, stack sections vertically */
     @media (max-width: 600px) {
       .chat-sections {
         flex-direction: column;
