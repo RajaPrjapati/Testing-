@@ -3,109 +3,338 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Next Paid Money</title>
+  <title> Member Details</title>
   <style>
-    * {
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
       margin: 0;
       padding: 0;
+    }
+
+    h2 {
+      background: #d6336c;
+      color: white;
+      padding: 12px;
+      margin: 0;
+      text-align: center;
+      font-size: 1.4rem;
+    }
+
+    h2 a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .search-container {
+      padding: 10px;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .search-container input {
+      width: 90%;
+      max-width: 400px;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
       box-sizing: border-box;
     }
 
-    body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: url("background2.jpeg") 
-                  no-repeat center center/cover; /* Background image */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 10px;
-      position: relative;
-    }
-
-    /* Dark overlay for better text readability */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
-    }
-
-    .chat-container {
-      background-color: #075E54; 
-      color: white;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 700px;
+    table {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
       width: 100%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      position: relative;
-      z-index: 1;
+      margin-top: 10px;
     }
 
-    .chat-header {
-      font-size: clamp(18px, 4vw, 22px);
-      margin-bottom: 15px;
-      font-weight: 600;
+    th, td {
+      border: 1px solid #ddd;
+      text-align: left;
+      padding: 8px;
+      font-size: 14px;
     }
 
-    .chat-header span {
-      font-size: 22px;
+    th {
+      background: #ffccd5;
+      color: #333;
     }
 
-    .chat-sections {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
     }
 
-    .chat-section {
-      flex: 1;
-      background-color: #064C44;
-      padding: 12px;
-      border-radius: 10px;
-      text-align: center;
+    tr:hover {
+      background-color: #ffe5ec;
+      transition: 0.2s;
+    }
 
-      /* Keep single line */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: clamp(12px, 3vw, 18px);
+    .paid {
+      color: green;
+      font-weight: bold;
+    }
+
+    .left {
+      color: red;
+      font-weight: bold;
+    }
+
+    /* Responsive Table */
+    .table-container {
+      overflow-x: auto;
+      margin: 10px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Fix for total row background */
+    .total-row th, 
+    .total-row td {
+      background: #ffccd5 !important;
+      font-weight: bold;
     }
 
     @media (max-width: 600px) {
-      .chat-sections {
-        flex-direction: column;
+      h2 {
+        font-size: 1.1rem;
+        padding: 10px;
       }
-    }
 
-    .timestamp {
-      text-align: right;
-      font-size: clamp(12px, 3vw, 14px);
-      margin-top: 15px;
-      opacity: 0.8;
+      th, td {
+        font-size: 12px;
+        padding: 6px;
+      }
+
+      .search-container input {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="chat-container">
-    <div class="chat-header">Next 2 months will paid money <span>💰</span></div>
-    
-    <div class="chat-sections">
-      <div class="chat-section">
-        1. Muskan Kumari — 10 September 2025
-      </div>
-      <div class="chat-section">
-        2. Ravi Kumar — 10 October 2025
-      </div>
-    </div>
 
-    <div class="timestamp">Committee✔✔</div>
+  <h2><a href="index.html">🧑‍🤝‍🧑🧑‍🤝‍🧑 Member Details</a></h2>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search by name or status (Paid)">
   </div>
+
+  <div class="table-container">
+    <table id="mytable" class="tbl">
+      <tr>
+        <th>S.N</th>
+        <th>Member Name</th>
+        <th>Contact</th>
+        <th>Reference</th>
+        <th>Status</th>
+      </tr>
+
+      <tr>
+        <td>1.</td>
+        <td>Mr. Anuj Lodhi</td>
+        <td>9001553582</td>
+        <td>Anuj Lodhi</td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr>
+        <td>2.</td>
+        <td>Ms. Aasani Kumari</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <td>Mr. Raj Bahadur</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>4.</td>
+        <td>Ms. Vijay Laxmi</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>5.</td>
+        <td>Mr. Shiv Prakash</td>
+        <td></td>
+        <td></td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr class="left">
+        <td>6.</td>
+        <td>Aditya Kumar
+          Ms. Sarita Rajpoot
+        </td>
+        <td>Left on 10 May 2025</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>7.</td>
+        <td>Mr. Naval Kishor</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>8.</td>
+        <td>Mr. Surendra Kumar</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>9.</td>
+        <td>Mr. Mukesh Kumar</td>
+        <td></td>
+        <td></td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr>
+        <td>10.</td>
+        <td>Mr. Tileshar Kumar</td>
+        <td></td>
+        <td></td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr>
+        <td>11.</td>
+        <td>Mr. Prabhu Dayal</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>12.</td>
+        <td>Mr. Ajay Prajapati</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>13.</td>
+        <td>Mr. Subham Kumar</td>
+        <td></td>
+        <td></td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr>
+        <td>14.</td>
+        <td>Mr. Sudhir Kumar</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>15.</td>
+        <td>Mr. Mahaveer Prajapati</td>
+        <td></td>
+        <td></td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr>
+        <td>16.</td>
+        <td>Mr. Ravi Kumar</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>17.</td>
+        <td>Mr. Roshan Kumar</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="left">
+        <td>18.</td>
+        <td>Mr. Sonu Raj</td>
+        <td>Left on 10 May 2025</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>19.</td>
+        <td>Mr. Raja Prajapati</td>
+        <td>7014758446</td>
+        <td>Raja Prajapati</td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr>
+        <td>20.</td>
+        <td>Ms. Annu Kumari</td>
+        <td></td>
+        <td></td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr>
+        <td>21.</td>
+        <td>Ms. Kittu Kumari</td>
+        <td></td>
+        <td></td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr>
+        <td>22.</td>
+        <td>Ms. Muskan Kumari</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>23.</td>
+        <td>Mr. Aniket Kumar</td>
+        <td></td>
+        <td></td>
+        <td class="paid">Paid✅</td>
+      </tr>
+      <tr>
+        <td>24.</td>
+        <td>Ms. Sweta Kumari</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>25.</td>
+        <td>Mr. Bharat Prajapati</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <!-- Total row -->
+      <tr class="total-row">
+        <th></th>
+        <th>Total</th>
+        <th></th>
+        <td></td>
+        <th></th>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    document.getElementById("searchInput").addEventListener("keyup", function() {
+      let filter = this.value.toLowerCase();
+      let rows = document.querySelectorAll("#mytable tr");
+
+      rows.forEach((row, index) => {
+        if (index === 0) return; // skip header
+        let text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+  </script>
+
 </body>
 </html>
 
 
-
-
+        
