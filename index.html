@@ -1,24 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> no test</title>
-  <style>
-    
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rent Records</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: #e0006c;
+        color: white;
+        padding: 15px;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .search-box {
+        width: 90%;
+        margin: 15px auto;
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    table {
+        width: 95%;
+        margin: auto;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th {
+        background: #f56299;
+        color: white;
+        padding: 10px;
+        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    tr:hover {
+        background: #fff5fa;
+    }
+
+    .input-field {
+        width: 98%;
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+</style>
 </head>
+
 <body>
 
-  <h2>No testing</a></h2>
+<header>📄 Rent Records</header>
 
+<input type="text" id="search" class="search-box" placeholder="Search by month / notes" onkeyup="filterTable()">
+
+<table id="rentTable">
+    <thead>
+        <tr>
+            <th>S.N</th>
+            <th>Month</th>
+            <th>Rent</th>
+            <th>From Unit</th>
+            <th>To Unit</th>
+            <th>Unit Amount</th>
+            <th>Total</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+
+    <tbody id="rentBody">
+        <tr>
+            <td>1</td>
+            <td><input class="input-field" type="text" placeholder="January"></td>
+            <td><input class="input-field" type="number" placeholder="Rent"></td>
+            <td><input class="input-field" type="number" placeholder="From"></td>
+            <td><input class="input-field" type="number" placeholder="To"></td>
+            <td><input class="input-field" type="number" placeholder="Unit ₹" disabled></td>
+            <td><input class="input-field" type="number" placeholder="Total" disabled></td>
+            <td><input class="input-field" type="text" placeholder="Notes"></td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td><input class="input-field" type="text" placeholder="February"></td>
+            <td><input class="input-field" type="number" placeholder="Rent"></td>
+            <td><input class="input-field" type="number" placeholder="From"></td>
+            <td><input class="input-field" type="number" placeholder="To"></td>
+            <td><input class="input-field" type="number" placeholder="Unit ₹" disabled></td>
+            <td><input class="input-field" type="number" placeholder="Total" disabled></td>
+            <td><input class="input-field" type="text" placeholder="Notes"></td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+// 🔍 Search Filter
+function filterTable() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let rows = document.querySelectorAll("#rentBody tr");
+
+    rows.forEach(row => {
+        let text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+    });
+}
+
+// 🔢 Auto Calculation for Unit Amount & Total
+document.querySelectorAll("#rentBody tr").forEach((row) => {
+    const rentInput = row.querySelector('td:nth-child(3) input');
+    const fromInput = row.querySelector('td:nth-child(4) input');
+    const toInput   = row.querySelector('td:nth-child(5) input');
+    const unitAmtInput = row.querySelector('td:nth-child(6) input');
+    const totalInput   = row.querySelector('td:nth-child(7) input');
+
+    function calculate() {
+        let rent = Number(rentInput.value) || 0;
+        let from = Number(fromInput.value) || 0;
+        let to   = Number(toInput.value) || 0;
+
+        let units = to - from;
+        let unitAmount = units * 10;   // ₹10 per unit
+
+        unitAmtInput.value = unitAmount >= 0 ? unitAmount : 0;
+        totalInput.value = rent + (unitAmount >= 0 ? unitAmount : 0);
+    }
+
+    rentInput.addEventListener("input", calculate);
+    fromInput.addEventListener("input", calculate);
+    toInput.addEventListener("input", calculate);
+});
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
